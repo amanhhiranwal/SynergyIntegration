@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qonevo.in/sitemap.xml
+Sitemap: https://synergy-integration.ae/sitemap.xml

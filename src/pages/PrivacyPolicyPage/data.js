@@ -1,7 +1,7 @@
 export const privacyPolicyData = {
   title: "PRIVACY POLICY",
 
-  website: "qonevo.in",
+  website: "synergy-integration.ae",
   company: "Synergy Integration Trading L.L.C",
   effectiveDate: "10 Sept 2026",
   lastUpdated: "10 Sept 2026",
@@ -14,7 +14,7 @@ export const privacyPolicyData = {
       paragraphs: [
         'Synergy Globals Limited ("Qonevo", "we", "our", or "us") respects your privacy and is committed to protecting your personal information.',
 
-        "This Privacy Policy explains how we collect, use, process, store, protect, and otherwise handle your personal data when you visit qonevo.in, submit an enquiry, request a quotation, purchase our products, or otherwise interact with our services.",
+        "This Privacy Policy explains how we collect, use, process, store, protect, and otherwise handle your personal data when you visit synergy-integration.ae, submit an enquiry, request a quotation, purchase our products, or otherwise interact with our services.",
 
         "Qonevo is registered and operates in India, and this Privacy Policy is governed primarily by the applicable laws of India, including the Digital Personal Data Protection Act, 2023 (DPDP Act) and the applicable rules and regulations made thereunder. The DPDP Act provides a framework for the processing of digital personal data and applies to relevant processing within India, with certain provisions also extending to processing outside India in connection with offering goods or services to individuals in India.",
 
@@ -91,7 +91,7 @@ export const privacyPolicyData = {
           paragraphs: [
             "Where consent is required under applicable law, we will obtain consent before processing personal data for the relevant purpose.",
 
-            "You may withdraw consent at any time by contacting us at support@qonevo.in.",
+            "You may withdraw consent at any time by contacting us at support@synergy-integration.ae.",
 
             "Withdrawal of consent will not affect the lawfulness of processing carried out before such withdrawal. Please note that withdrawing consent for certain processing activities may affect our ability to provide particular services or respond to specific requests.",
           ],
@@ -105,7 +105,7 @@ export const privacyPolicyData = {
 
             "We do not knowingly seek to collect personal data from children through the website. Where the DPDP Act and applicable rules impose specific requirements relating to children's data, including requirements concerning verifiable parental consent, we will comply with those requirements as applicable.",
 
-            "If you believe that a child has provided personal data through our website without appropriate consent, please contact us at support@qonevo.in so that we can review the matter and take appropriate action, including deletion where required.",
+            "If you believe that a child has provided personal data through our website without appropriate consent, please contact us at support@synergy-integration.ae so that we can review the matter and take appropriate action, including deletion where required.",
           ],
         },
 
@@ -393,7 +393,7 @@ export const privacyPolicyData = {
         {
           organization: "Synergy Integration Trading L.L.C",
 
-          website: "qonevo.in",
+          website: "synergy-integration.ae",
 
           email: "business@synergyintegration.ae",
 
@@ -419,7 +419,7 @@ export const privacyPolicyData = {
       paragraphs: [
         "We may update this Privacy Policy from time to time to reflect changes in applicable laws, regulations, business practices, technologies, or our data-processing activities.",
 
-        "Any updated version of this Privacy Policy will be published on  qonevo.in with the revised Last Updated date.",
+        "Any updated version of this Privacy Policy will be published on  synergy-integration.ae with the revised Last Updated date.",
 
         "We encourage users to review this Privacy Policy periodically to remain informed about how we protect and process personal data.",
       ],

@@ -267,7 +267,7 @@ const Footer = () => {
               Support E-mail:
             </span>
             <a
-              href="mailto:support@qonevo.in"
+              href="mailto:support@synergyintegration.ae"
               className="text-dark text-decoration-none footer-email"
             >
               {" "}
