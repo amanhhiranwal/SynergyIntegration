@@ -30,7 +30,7 @@ const features_sna = [
     image: icon1,
     title: "Contact Support",
     desc: "Get help directly through email support",
-    href: "mailto: support@qonevo.in",
+    href: "mailto: support@synergy-integration.ae",
   },
   {
     image: raiseQuery,

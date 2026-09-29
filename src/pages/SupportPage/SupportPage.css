@@ -23,7 +23,7 @@
   height: auto;
   position: relative;
   overflow: hidden;
-  /* aspect-ratio: 1440/ 419; */
+  aspect-ratio: 1440/ 480;
 }
 
 .support-banner img {

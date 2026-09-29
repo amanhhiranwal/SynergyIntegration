@@ -19,7 +19,7 @@
 }
 
 .navbar-brand img {
-  height: 29px;
+  height: 45px;
   width: auto;
   object-fit: contain;
 }
@@ -434,7 +434,7 @@
 @media (max-width: 768px) {
   .navbar { height: 68px; }
   .nav-container { padding-left: 16px !important; padding-right: 16px !important; }
-  .navbar-brand img { height: 24px; }
+  .navbar-brand img { height: 36px; }
   
   #navbarContent { 
     top: 68px; 
@@ -454,7 +454,7 @@
    ========================================= */
 @media (max-width: 480px) {
   .navbar { height: 64px; }
-  .navbar-brand img { height: 22px; }
+  .navbar-brand img { height: 32px; }
   
   #navbarContent { 
     top: 64px; 
