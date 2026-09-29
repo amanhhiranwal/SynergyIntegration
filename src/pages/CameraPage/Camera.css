@@ -1,0 +1,93 @@
+.cam-main-section {
+  background-color: #f5f5f5;
+  --main-heading-col: #f5f5f5;
+  --main-desc-col: #bdbdbd;
+  --big-heading-size-lg: 44px;
+  --big-heading-size-md: 36px;
+  --big-heading-size-sm: 28px;
+  --big-heading-fw: 400;
+  --big-desc-fw: 500;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.cam-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  aspect-ratio: 1440 / 640;
+  overflow: hidden;
+}
+
+.cam-hero-section img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cam-hero-overlay {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+  padding: 0 20px;
+  /* animation: fadeInUp 1s ease-out; */
+}
+
+.cam-hero-title {
+  font-size: var(--big-heading-size-lg);
+  font-weight: 400;
+  color: var(--main-heading-col);
+  margin: 0 0 3px 0;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.cam-hero-subtitle {
+  font-size: clamp(0.6rem, 1.6vw, 1rem);
+  font-weight: 500;
+  color: var(--main-desc-col);
+  margin: 0;
+  letter-spacing: 0.8px;
+}
+
+/* Responsive adjustments */
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .cam-hero-section {
+    aspect-ratio: 1/1;
+  }
+   .cam-hero-title {
+    font-size: var(--big-heading-size-md);
+    margin-bottom: 10px;
+  }
+
+  .cam-hero-subtitle{
+    font-size: 14px;
+  }
+}
+
+/*  Mobile  */
+@media (max-width: 425px) {
+  .cam-hero-overlay {
+    top: 10%;
+  }
+  .cam-hero-title {
+    font-size: var(--big-heading-size-sm);
+    margin-bottom: 10px;
+  }
+  .cam-hero-overlay {
+    top: 8%;
+    width: 95%;
+  }
+    .cam-hero-subtitle{
+    font-size: 12px;
+  }
+}
+
+

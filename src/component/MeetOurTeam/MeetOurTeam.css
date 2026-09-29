@@ -1,0 +1,451 @@
+.mot-section,
+.mot-section * {
+  box-sizing: border-box;
+}
+
+.mot-section {
+  width: 100%;
+  padding: clamp(48px, 5vw, 80px) clamp(16px, 5vw, 100px)
+    clamp(80px, 9vw, 140px);
+  overflow: hidden;
+  background: #f5f6fa;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.mot-container {
+  width: 100%;
+  /* max-width: 1340px; */
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mot-header {
+  max-width: 1000px;
+  margin: 0 auto clamp(60px, 6vw, 90px);
+  text-align: center;
+}
+
+.mot-title {
+  margin: 0 0 18px;
+  color: #001654;
+  /* font-size: clamp(36px, 4vw, 52px); */
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.mot-subtitle {
+  max-width: 950px;
+  margin: 0 auto;
+  color: #4c4c4c;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Equal four-column layout */
+
+.mot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* All cards are the same size */
+
+.mot-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #dfe5f2;
+  cursor: pointer;
+  outline: none;
+  isolation: isolate;
+}
+
+/* Cards 2 and 4 move down, matching the screenshot */
+
+.mot-card:nth-child(even) {
+  margin-top: 90px;
+}
+
+.mot-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.mot-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+  will-change: transform;
+}
+
+/* .mot-card:hover .mot-image,
+.mot-card:focus-within .mot-image,
+.mot-card:focus .mot-image {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+} */
+
+/* Default bottom gradient */
+
+.mot-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0, 22, 84, 0.98) 0%,
+    rgba(0, 22, 84, 0.82) 16%,
+    rgba(0, 22, 84, 0.34) 36%,
+    rgba(0, 22, 84, 0.08) 58%,
+    transparent 76%
+  );
+}
+
+/* Darker hover overlay */
+
+.mot-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 22, 84, 0.96) 0%,
+    rgba(0, 22, 84, 0.88) 38%,
+    rgba(0, 22, 84, 0.46) 72%,
+    rgba(0, 22, 84, 0.2) 86%,
+    rgba(0, 22, 84, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mot-card:hover .mot-overlay::after,
+.mot-card:focus-within .mot-overlay::after,
+.mot-card:focus .mot-overlay::after {
+  opacity: 1;
+}
+
+/* Card information */
+
+.mot-info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 20px;
+  color: #fff;
+  text-align: center;
+  transition:
+    top 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    bottom 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mot-card:hover .mot-info,
+.mot-card:focus-within .mot-info,
+.mot-card:focus .mot-info {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+.mot-main-text {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mot-card:hover .mot-main-text,
+.mot-card:focus-within .mot-main-text,
+.mot-card:focus .mot-main-text {
+  transform: translateY(-2px);
+}
+
+.mot-name {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.mot-role {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mot-desc {
+  max-width: 92%;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mot-card:hover .mot-desc,
+.mot-card:focus-within .mot-desc,
+.mot-card:focus .mot-desc {
+  max-height: 180px;
+  margin-top: 14px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tablet */
+
+/* @media (max-width: 1050px) {
+  .mot-container {
+    max-width: 760px;
+  }
+
+  .mot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .mot-card:nth-child(even) {
+    margin-top: 50px;
+  }
+} */
+
+/* Mobile */
+/* Mobile only — desktop styles remain unchanged */
+
+
+@media (max-width: 1023px) {
+   /* Keep card info permanently at the bottom */
+  .mot-card:hover .mot-info,
+  .mot-card:focus .mot-info,
+  .mot-card:focus-within .mot-info {
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+  }
+
+  /* Do not apply hover/focus movement to main text */
+  .mot-card:hover .mot-main-text,
+  .mot-card:focus .mot-main-text,
+  .mot-card:focus-within .mot-main-text {
+    transform: none !important;
+  }
+
+  /* Do not show the hover/focus overlay */
+  .mot-card:hover .mot-overlay::after,
+  .mot-card:focus .mot-overlay::after,
+  .mot-card:focus-within .mot-overlay::after {
+    opacity: 0 !important;
+  }
+
+  /* Description should never appear */
+  .mot-card:hover .mot-desc,
+  .mot-card:focus .mot-desc,
+  .mot-card:focus-within .mot-desc {
+    max-height: 0 !important;
+    margin-top: 0 !important;
+    opacity: 0 !important;
+    transform: none !important;
+  }
+  .mot-section {
+    overflow: visible;
+  }
+
+  .mot-header {
+    margin-bottom: 36px;
+  }
+
+  .mot-title {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .mot-subtitle {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .mot-subtitle br {
+    display: none;
+  }
+
+  
+  .mot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 14px;
+    row-gap: 10px;
+  }
+
+ 
+  .mot-card,
+  .mot-card:nth-child(even) {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: 11px;
+  }
+
+  .mot-image-wrapper {
+    border-radius: 11px;
+  }
+
+  .mot-image {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Smaller bottom content area */
+  .mot-info {
+    padding: 18px 8px 12px;
+    
+  }
+
+  .mot-name {
+    margin-bottom: 5px;
+    font-size: 24px;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .mot-role {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .mot-desc {
+    max-width: 97%;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .mot-card:hover .mot-desc,
+  .mot-card:focus-within .mot-desc,
+  .mot-card:focus .mot-desc {
+    max-height: 130px;
+    margin-top: 8px;
+  }
+  .mot-desc{
+    display: none;
+  }
+}
+
+
+@media (max-width: 425px) {
+    .mot-section {
+    overflow: visible;
+  }
+
+  .mot-header {
+    margin-bottom: 36px;
+  }
+
+  .mot-title {
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .mot-subtitle {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .mot-subtitle br {
+    display: none;
+  }
+
+  /* Keep two cards in each row */
+  .mot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 14px;
+    row-gap: 10px;
+  }
+
+  /* Remove desktop/tablet stagger on mobile */
+  .mot-card,
+  .mot-card:nth-child(even) {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: 11px;
+  }
+
+  .mot-image-wrapper {
+    border-radius: 11px;
+  }
+
+  .mot-image {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Smaller bottom content area */
+  .mot-info {
+    padding: 18px 8px 12px;
+  }
+
+  .mot-name {
+    margin-bottom: 5px;
+    font-size: clamp(16px, 4.3vw, 19px);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .mot-role {
+    font-size: clamp(9px, 2.4vw, 11px);
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .mot-desc {
+    max-width: 96%;
+    font-size: 10px;
+    line-height: 1.4;
+    display: none;
+  }
+
+  .mot-card:hover .mot-desc,
+  .mot-card:focus-within .mot-desc,
+  .mot-card:focus .mot-desc {
+    max-height: 130px;
+    margin-top: 8px;
+  }
+}

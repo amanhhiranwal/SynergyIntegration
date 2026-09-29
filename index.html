@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO -->
+    <title>Qonevo | Smart Display & Computing Solutions</title>
+
+    <meta
+      name="description"
+      content="Premium display and computing solutions by Qonevo. Explore AI-powered interactive flat panels, LED video walls, kiosks, and complete screen ecosystems for education and enterprise."
+    />
+
+    <meta
+      name="keywords"
+      content="Qonevo, Interactive Flat Panel, Smart Classroom, EdTech Solutions, LED Video Wall, Kiosk Display, OPS PC, All in One PC, Computer Lab, Robotics Lab"
+    />
+
+    <meta name="author" content="Qonevo Technologies" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://qonevo.in/" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!--
+      Fonts are requested here rather than via @import inside a route
+      stylesheet: an @import can only be discovered after that CSS has been
+      downloaded and parsed, which puts the font request on a serialized
+      chain. Loaded families are limited to the ones the stylesheets
+      actually declare (Inter, DM Sans, Montserrat).
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Applied with media="print" and switched to "all" on load so the
+      stylesheet downloads without blocking the first render; display=swap
+      means text stays visible in the fallback face until Inter arrives.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!--
+      Google Analytics.
+
+      gtag.js is ~170KB of third-party JavaScript that competes with the app
+      for the main thread during the initial render. Queueing the hits up
+      front and only fetching the library once the page is idle (or on the
+      first interaction, whichever comes first) keeps the measurement intact
+      while moving the parse/compile cost off the critical path.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "G-7120XJ4TCY");
+
+      (function loadAnalyticsWhenIdle() {
+        var loaded = false;
+
+        function load() {
+          if (loaded) return;
+          loaded = true;
+
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=G-7120XJ4TCY";
+          document.head.appendChild(s);
+        }
+
+        ["pointerdown", "keydown", "touchstart", "scroll"].forEach(function (e) {
+          addEventListener(e, load, { once: true, passive: true });
+        });
+
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(load, { timeout: 5000 });
+        } else {
+          addEventListener("load", function () {
+            setTimeout(load, 2000);
+          });
+        }
+      })();
+    </script>
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Qonevo | Smart Display & Computing Solutions"
+    />
+
+    <meta
+      property="og:description"
+      content="AI-powered interactive displays, LED video walls, kiosks, and computing solutions for education and enterprise."
+    />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:url" content="https://qonevo.in/" />
+
+    <!-- Twitter -->
+    <meta
+      name="twitter:title"
+      content="Qonevo | Smart Display & Computing Solutions"
+    />
+
+    <meta
+      name="twitter:description"
+      content="AI-powered interactive displays, LED video walls, kiosks, and computing solutions."
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

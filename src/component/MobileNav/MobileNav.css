@@ -1,0 +1,629 @@
+/* ==========================================================================
+   MobileNav
+   Exact mobile navigation geometry matching AdvDisplayMode
+   ========================================================================== */
+
+.mfn-nav {
+  --mfn-navy: #001654;
+  --mfn-duration: 1.1s;
+  --mfn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --mfn-radius: 1.5rem;
+  --mfn-peek: 2.75rem;
+  --mfn-card-max: 28rem;
+
+  display: none;
+
+  position: relative;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  margin-top: clamp(0.25rem, 1.5vw, 0.75rem);
+
+  /*
+   * Same full-width positioning as AdvDisplayMode.
+   */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding-block: 1rem;
+  padding-inline: 0;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  isolation: isolate;
+}
+
+
+/* ==========================================================================
+   MOBILE + TABLET
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .mfn-nav {
+    display: block;
+  }
+}
+
+
+/* ==========================================================================
+   SPACER
+   ========================================================================== */
+
+.mfn-spacer {
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/*
+ * Only the active card is placed inside the spacer.
+ * This determines the natural height of the navigation.
+ */
+.mfn-card-spacer {
+  position: relative;
+
+  width: min(
+    calc(100% - 5rem),
+    var(--mfn-card-max)
+  );
+
+  max-width: var(--mfn-card-max);
+
+  margin-inline: auto;
+
+  background: transparent !important;
+  box-shadow: none !important;
+
+  border-radius: var(--mfn-radius);
+}
+
+
+/* ==========================================================================
+   CARD BASE
+
+   Matches AdvDisplayMode
+   ========================================================================== */
+
+.mfn-card {
+  background: var(--mfn-navy);
+
+  border-radius: 1.5rem;
+
+  color: #fff;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: clamp(3.75rem, 12vw, 4.5rem);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+/* ==========================================================================
+   ANIMATED CARD
+   ========================================================================== */
+
+.mfn-card-anim {
+  position: absolute;
+
+  top: 50%;
+
+  /*
+   * Fixed responsive width.
+   * The card must never grow because of its content.
+   */
+  width: min(
+    calc(100% - 7rem),
+    var(--mfn-card-max)
+  );
+
+  max-width: var(--mfn-card-max);
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  transition:
+    left var(--mfn-duration) var(--mfn-ease),
+    transform var(--mfn-duration) var(--mfn-ease),
+    opacity var(--mfn-duration) ease;
+
+  will-change: left, transform, opacity;
+}
+
+
+/* ==========================================================================
+   ACTIVE
+   ========================================================================== */
+
+.mfn-card-active {
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 3;
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  cursor: default;
+
+  border-radius: 1.5rem;
+}
+
+
+/* ==========================================================================
+   PREVIOUS
+   ========================================================================== */
+
+.mfn-card-prev {
+  left: 0;
+
+  width: min(
+    calc(100% - 7rem),
+    var(--mfn-card-max)
+  );
+
+  transform:
+    translate(-100%, 0)
+    translateX(2.5rem);
+
+  z-index: 2;
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+
+  border-radius:
+    0
+    1.45rem
+    1.45rem
+    0;
+}
+
+/* ==========================================================================
+   NEXT
+   ========================================================================== */
+.mfn-card-next {
+  left: 100%;
+
+  width: min(
+    calc(100% - 7rem),
+    var(--mfn-card-max)
+  );
+
+  transform:
+    translate(0, 0)
+    translateX(-2.5rem);
+
+  z-index: 2;
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+
+  border-radius:
+    1.45rem
+    0
+    0
+    1.45rem;
+}
+
+
+/* ==========================================================================
+   HIDDEN LEFT
+   ========================================================================== */
+
+.mfn-card-hidden-left {
+  left: 0;
+
+  transform:
+    translate(-100%, -50%)
+    translateX(-2rem);
+
+  z-index: 0;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  visibility: hidden;
+}
+
+
+/* ==========================================================================
+   HIDDEN RIGHT
+   ========================================================================== */
+
+.mfn-card-hidden-right {
+  left: 100%;
+
+  transform:
+    translate(0, -50%)
+    translateX(2rem);
+
+  z-index: 0;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  visibility: hidden;
+}
+
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.mfn-card-content {
+  display: grid;
+
+  grid-template-rows: 0fr;
+
+  padding-inline: clamp(1.25rem, 4vw, 1.75rem);
+  padding-block: 0;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  box-sizing: border-box;
+
+  transition:
+    grid-template-rows 0.6s var(--mfn-ease),
+    padding 0.6s var(--mfn-ease),
+    opacity 0.4s ease;
+}
+
+
+/* ==========================================================================
+   ACTIVE CONTENT
+   ========================================================================== */
+
+.mfn-card-active .mfn-card-content,
+.mfn-card-content-spacer {
+  grid-template-rows: 1fr;
+
+  padding-block: clamp(1.25rem, 4vw, 1.75rem);
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transition:
+    grid-template-rows 1s var(--mfn-ease),
+    padding 1s var(--mfn-ease),
+    opacity 1s 0.25s ease;
+}
+
+
+/* ==========================================================================
+   SIDE / HIDDEN CONTENT
+   ========================================================================== */
+
+.mfn-card-prev .mfn-card-content,
+.mfn-card-next .mfn-card-content,
+.mfn-card-hidden-left .mfn-card-content,
+.mfn-card-hidden-right .mfn-card-content {
+  grid-template-rows: 0fr;
+
+  padding-block: 0;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   CONTENT INNER
+   ========================================================================== */
+
+.mfn-card-content-inner {
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.mfn-card-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  margin-bottom: 0.65rem;
+
+  min-width: 0;
+}
+
+
+/* ==========================================================================
+   ICON
+   ========================================================================== */
+
+.mfn-card-icon {
+  width: clamp(1.25rem, 4vw, 1.5rem);
+
+  height: clamp(1.25rem, 4vw, 1.5rem);
+
+  object-fit: contain;
+
+  filter: brightness(0) invert(1);
+
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
+
+.mfn-card-title {
+  margin: 0;
+
+  min-width: 0;
+
+  color: #fff;
+
+  font-size: clamp(1rem, 4vw, 1.15rem);
+
+  font-weight: 400;
+
+  line-height: 1.3;
+
+  overflow-wrap: break-word;
+}
+
+
+/* ==========================================================================
+   DESCRIPTION
+   ========================================================================== */
+
+.mfn-card-desc {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+
+  line-height: 1.5;
+
+  overflow-wrap: break-word;
+}
+
+
+/* ==========================================================================
+   ARROWS
+
+   Same position as AdvDisplayMode:
+   previous arrow = right edge
+   next arrow = left edge
+   ========================================================================== */
+
+.mfn-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+
+  opacity: 0;
+  visibility: hidden;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  box-sizing: border-box;
+
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+}
+
+
+/* Previous card → arrow on RIGHT */
+.mfn-arrow-prev {
+  right: 0;
+  left: auto;
+}
+
+
+/* Next card → arrow on LEFT */
+.mfn-arrow-next {
+  left: 0;
+  right: auto;
+}
+
+
+/* Show previous arrow */
+.mfn-card-prev .mfn-arrow-prev {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* Show next arrow */
+.mfn-card-next .mfn-arrow-next {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ==========================================================================
+   SVG
+   ========================================================================== */
+
+.mfn-arrow svg {
+  width: 1.2rem;
+  height: 1.2rem;
+
+  display: block;
+
+  flex-shrink: 0;
+
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (min-width: 40.0625rem) and (max-width: 56.25rem) {
+  .mfn-nav {
+    padding-block: 1rem;
+  }
+
+  .mfn-card-anim {
+    width: min(
+      calc(100% - 5rem),
+      var(--mfn-card-max)
+    );
+  }
+
+  .mfn-card-prev {
+    transform:
+      translate(-100%, 0)
+      translateX(2.75rem);
+  }
+
+  .mfn-card-next {
+    transform:
+      translate(0, 0)
+      translateX(-2.5rem);
+  }
+
+  .mfn-arrow {
+    width: 2.75rem;
+    height: 3.75rem;
+  }
+
+  .mfn-arrow svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   PHONE
+
+   EXACT AdvDisplayMode phone geometry
+   ========================================================================== */
+
+@media (max-width: 40rem) {
+  .mfn-nav {
+    padding-block: 2rem;
+  }
+
+  .mfn-card-anim {
+    width: calc(100% - 7rem);
+  }
+
+  .mfn-card-prev {
+    transform:
+      translate(-100%, 0)
+      translateX(2.5rem);
+
+    border-radius:
+      0
+      1.45rem
+      1.45rem
+      0;
+  }
+
+  .mfn-card-next {
+    transform:
+      translate(0, 0)
+      translateX(-2.5rem);
+
+    border-radius:
+      1.45rem
+      0
+      0
+      1.45rem;
+  }
+
+  .mfn-arrow {
+    width: 2.5rem;
+    height: 3.25rem;
+  }
+
+  .mfn-arrow svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .mfn-card-title {
+    font-size: 14px;
+  }
+
+  .mfn-card-desc {
+    font-size: 11px;
+  }
+}
+
+
+/* ==========================================================================
+   Z-INDEX SAFETY
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .mfn-card-active {
+    z-index: 3;
+  }
+
+  .mfn-card-prev,
+  .mfn-card-next {
+    z-index: 2;
+  }
+
+  .mfn-card-hidden-left,
+  .mfn-card-hidden-right {
+    z-index: 0;
+  }
+}

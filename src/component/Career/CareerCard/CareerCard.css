@@ -1,0 +1,147 @@
+/* =========================================
+   CAREER CARD
+========================================= */
+
+.job-card {
+  background: #ffffff;
+  min-height: 282px;
+  padding: 22px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.025);
+   font-family: "Inter", sans-serif;
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.job-card__content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   JOB TITLE
+========================================= */
+
+.job-card__title {
+  margin: 0 0 14px;
+  color: #001654;
+ 
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  max-width: 95%;
+}
+
+/* =========================================
+   JOB TAGS
+========================================= */
+
+.job-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.job-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 5px 9px;
+  /* background-color: #F5F5F5; */
+  background-color: #e8e8e8;
+  /* border: 1px solid #BDBDBD; */
+  border-radius: 5px;
+  color: #4C4C4C;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.job-card__tag img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
+/* =========================================
+   EXPERIENCE TAG (separate row)
+========================================= */
+
+.job-card__tag--experience {
+  width: fit-content;
+  min-height: 25px;
+  margin-bottom: 12px;
+}
+
+/* =========================================
+   JOB ID
+========================================= */
+
+.job-card__job-id {
+  margin: 0 0 12px;
+  color: #30415e;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.job-card__job-id strong {
+  font-weight: 500;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.job-card__description {
+  margin: 0;
+  color: #606060;
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.55;
+  max-width: 95%;
+}
+
+/* =========================================
+   VIEW DETAILS BUTTON
+========================================= */
+
+.job-card__btn {
+  width: 100%;
+  height: 44px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  background: #001654;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.job-card__btn:hover {
+  background: #001a4d;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .job-card {
+    min-height: 260px;
+  }
+
+  .job-card__title {
+    font-size: 21px;
+  }
+}

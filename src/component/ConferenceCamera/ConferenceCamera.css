@@ -1,0 +1,749 @@
+.cam-container * {
+  animation-play-state: paused !important;
+  --sec-heading-md: 28px;
+  --sec-subheading-md:14px;
+
+  --sec-heading-sm: 24px;
+  --sec-subheading-sm: 12px;
+
+
+  --hero-heading-col:#FFFFFF;
+  --hero-desc-col:#BDBDBD;
+
+  --sec-heading-hero-md: 36px;
+
+  --sec-heading-hero-sm:32px;
+    --sec-desc-hero-sm:12px;
+
+
+}
+
+.cam-container.cam-in-view * {
+  animation-play-state: running !important;
+}
+
+.cam-container {
+  width: 100%;
+  padding: 60px 20px;
+  font-family: "Inter", sans-serif;
+  --heading-color: #001654;
+  --tabs-bg: #001654;
+  --dark-text: #131313;
+  padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px) !important;
+  /* margin-bottom: 140px; */
+}
+
+.cam-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cam-title {
+  font-size: 44px;
+  font-weight: 400;
+  color: var(--heading-color);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Tabs */
+.cam-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cam-tab {
+  padding: 12px 40px;
+  border: none;
+  border-radius: 16px;
+  background-color: #f5f5f7;
+  color: var(--dark-text);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cam-tab-active {
+  background-color: var(--tabs-bg);
+  color: #ffffff;
+}
+
+.cam-tab-active:hover {
+  background-color: #0a1b3d;
+}
+
+/* Content */
+/* Stack container — layers overlap exactly so there's never a gap */
+.cam-content-stack {
+  position: relative;
+  width: 100%;
+  min-height: 620px;
+  margin-bottom: 0;
+  /* min-height: 250px; */
+  margin-bottom: 0;
+}
+
+.cam-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------------------------
+   LAYER POSITIONING ONLY — opacity no longer lives here.
+   Opacity is now controlled independently on .cam-layer-text
+   and .cam-image-wrapper via the .cam-fade utility classes below,
+   so the image and text can fade on different terms.
+------------------------------------------ */
+.cam-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.cam-layer-active {
+  pointer-events: auto;
+}
+
+.cam-layer-entering,
+.cam-layer-exiting {
+  pointer-events: none;
+}
+
+/* ------------------------------------------
+   FADE UTILITY CLASSES
+   Applied independently to .cam-layer-text and .cam-image-wrapper.
+   Default: normal 0.6s crossfade (same timing as before).
+   .cam-fade-instant: removes the transition for a hard cut —
+   used only on the image for the Tab2 (Auto Framing) ↔ Tab3 (Audio) pair.
+------------------------------------------ */
+.cam-fade {
+  opacity: 0;
+  transition: opacity 0.6s ease; /* match TRANSITION_MS = 500 */
+  will-change: opacity;
+}
+
+.cam-fade-active {
+  opacity: 1;
+}
+
+.cam-fade-instant {
+  transition: none !important;
+}
+
+.cam-layer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cam-icon-wrapper {
+  margin-bottom: 24px;
+}
+
+.cam-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.cam-description {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 40px;
+  max-width: 800px;
+  text-wrap: wrap;
+}
+
+/* Image wrapper - base */
+.cam-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/1;
+  max-height: 390px;
+  max-width: 800px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.cam-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Overlay - common base */
+.cam-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cam-image-clear {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cam-slider {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==============================
+   ANIMATION 1: DUAL LENS
+   Blur → Clear reveal from right to center
+   ============================== */
+.cam-image-base-dual-lens {
+  filter: blur(3px);
+  transform: scale(1.05);
+}
+
+.cam-image-overlay-dual-lens {
+  width: 0%;
+  right: 0;
+  left: auto;
+  animation: camDualLensReveal 2.5s ease-in-out 0.8s forwards;
+}
+
+.cam-image-clear-dual-lens {
+  width: 800px;
+  max-width: none;
+  right: 0;
+  left: auto;
+}
+
+.cam-slider-dual-lens {
+  right: 0;
+  width: 3.2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.3)
+  );
+  animation: camDualLensSlider 2.5s ease-in-out 0.8s forwards;
+}
+
+@keyframes camDualLensReveal {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes camDualLensSlider {
+  0% {
+    right: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    right: 50%;
+    opacity: 1;
+  }
+}
+
+/* ==============================
+   LABEL - Base styles
+   ============================== */
+.cam-label {
+  position: absolute;
+  bottom: 5px;
+  right: 30px;
+  color: #cbcaca;
+  font-size: 20px;
+  font-weight: 400;
+  z-index: 3;
+  pointer-events: none;
+  /* text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); */
+}
+
+/* ==============================
+   LABEL ANIMATION: DUAL LENS
+   Slides up smoothly from below after slider reaches center
+   ============================== */
+.cam-label-dual-lens {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: camLabelSlideUp 1s ease-out 3.2s forwards;
+  /* Delay = slider start (0.8s) + slider duration (2.5s) - overlap (0.1s) */
+}
+
+@keyframes camLabelSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ==============================
+   ANIMATION 2: AUTO FRAMING
+   Face detection brackets with blink
+   ============================== */
+.cam-image-overlay-auto-framing {
+  display: none;
+}
+.cam-slider-auto-framing {
+  display: none;
+}
+
+.cam-face-auto-framing {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: camFaceBlink 2s ease-in-out 1s infinite;
+}
+
+/* Corner brackets */
+.cam-face-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0;
+}
+
+.cam-face-corner-tl {
+  top: 0;
+  left: 0;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.cam-face-corner-tr {
+  top: 0;
+  right: 0;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+
+.cam-face-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.cam-face-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+
+/* Blink animation - fade in, stay, fade out, repeat */
+@keyframes camFaceBlink {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+.cam-image-overlay-audio-system {
+  display: none;
+}
+.cam-slider-audio-system {
+  display: none;
+}
+
+.cam-image-base-audio-system {
+  transform-origin: 47.2% 2%;
+  animation: camAudioZoom 3s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0.04s;
+}
+
+@keyframes camAudioZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(2.87);
+  }
+}
+.cam-fade.cam-image-zooming-out {
+  transition: opacity 0.4s ease 2.6s;
+}
+
+.cam-image-zooming-out .cam-image-base-audio-system {
+  animation: camAudioZoomOut 2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+@keyframes camAudioZoomOut {
+  0% {
+    transform: scale(2.87);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Speaker point container */
+.cam-speaker-audio-system {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+/* Ensures the zooming-out Tab3 image stays visually on top of the
+   instantly-appearing Tab2 layer, so the shrink animation is actually seen
+   instead of being covered immediately. */
+.cam-layer-stack-top {
+  z-index: 2;
+}
+
+.cam-layer-stack-back {
+  z-index: 1;
+}
+/* =========================
+   BASE RING
+========================= */
+
+.cam-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  box-sizing: border-box;
+
+  /* Add this to force all rings onto the same global timeline */
+  animation-delay: 2s !important;
+}
+
+/* =========================
+   RING SIZES & ANIMATIONS
+========================= */
+.cam-ring-1 {
+  width: 46px;
+  height: 46px;
+  border: 1.6px solid rgba(255, 255, 255, 0.95);
+  animation: camRing1 2s linear infinite;
+}
+
+.cam-ring-2 {
+  width: 92px;
+  height: 92px;
+  border: 1.4px solid rgba(255, 255, 255, 0.8);
+  animation: camRing2 2s linear infinite;
+}
+
+.cam-ring-3 {
+  width: 140px;
+  height: 140px;
+  border: 1.1px solid rgba(255, 255, 255, 0.55);
+  animation: camRing3 2s linear infinite;
+}
+
+.cam-ring-4 {
+  width: 190px;
+  height: 190px;
+  border: 0.8px solid rgba(190, 190, 190, 0.35);
+  animation: camRing4 2s linear infinite;
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+@keyframes camRing1 {
+  0%, 100% {
+    opacity: 1; /* Always on */
+  }
+}
+
+@keyframes camRing2 {
+  0%     { opacity: 0; }
+  20%    { opacity: 0; }
+  30%    { opacity: 1; } /* Smooth fade in */
+  85%    { opacity: 1; } /* Holds visibility */
+  85.01% { opacity: 0; } /* ALL RINGS SNAP OFF HERE */
+  100%   { opacity: 0; }
+}
+
+@keyframes camRing3 {
+  0%     { opacity: 0; }
+  40%    { opacity: 0; }
+  50%    { opacity: 1; } /* Smooth fade in */
+  85%    { opacity: 1; } /* Holds visibility */
+  85.01% { opacity: 0; } /* ALL RINGS SNAP OFF HERE */
+  100%   { opacity: 0; }
+}
+
+@keyframes camRing4 {
+  0%     { opacity: 0; }
+  60%    { opacity: 0; }
+  70%    { opacity: 1; } /* Smooth fade in */
+  85%    { opacity: 1; } /* Holds visibility */
+  85.01% { opacity: 0; } /* ALL RINGS SNAP OFF HERE */
+  100%   { opacity: 0; }
+}
+
+/* Tab 3 → Tab 2 exit: fade the mic/ring group out quickly and independently
+   of the image's own delayed fade, so the sound signal disappears well
+   before the zoom-out finishes. */
+.cam-speaker-exit-fade {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+/* ==============================
+   ANIMATION 4: PROFESSIONAL CONNECTIVITY
+   Base bg → device → ports one by one
+   ============================== */
+.cam-image-overlay-connectivity {
+  display: none;
+}
+.cam-slider-connectivity {
+  display: none;
+}
+
+/* Camera device image */
+.cam-device-connectivity {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  width: 46%;
+  height: auto;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  object-fit: contain;
+  z-index: 2;
+  animation: camDeviceIn 0.8s ease-out 0.8s forwards;
+}
+
+@keyframes camDeviceIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px) scale(1);
+  }
+}
+.cam-nav-bar{
+  display: none;
+}
+
+/* Ports row */
+.cam-ports-connectivity {
+  position: absolute;
+  top: 65%;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(34px, 14%, 180px);
+  align-items: flex-end;
+  justify-content: center;
+  width: 90%;
+  z-index: 3;
+}
+
+.cam-port {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: camPortIn 0.9s ease-out forwards;
+}
+
+.cam-port-icon {
+  width: clamp(28px, 4vw, 46px);
+  height: clamp(28px, 4vw, 46px);
+  object-fit: contain;
+}
+
+.cam-port-label {
+  font-size: clamp(10px, 1.2vw, 14px);
+  color: #131313;
+  white-space: nowrap;
+}
+
+@keyframes camPortIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 1023px){
+
+  
+  .cam-tab {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+ .cam-tabs {
+    display: none;
+  }
+
+  .cam-nav-bar {
+    display: block;
+    width: 100%;
+    /* margin-top: 40px; */
+    position: relative;
+    z-index: 10;
+  }
+
+  .cam-mobile-nav {
+    /* width: 100%; */
+  }
+    .cam-content-stack {
+    min-height: 400px;
+  }
+
+  .cam-icon, .cam-description{
+    display: none;
+  }
+
+  .cam-title{
+    font-size: 32px;
+
+    margin-bottom:18px;
+  }
+  .cam-icon-wrapper {
+    display: none; /* not just the icon — kill the wrapper's margin too */
+  }
+
+  .cam-content-stack {
+    min-height: 0;
+    aspect-ratio: 2 / 1;   /* matches .cam-image-wrapper, since it's the only visible content below 1023px */
+    max-height: 390px;     /* matches the image's own cap */
+    max-width: 800px;      /* matches .cam-image-wrapper so the ratio math lines up */
+    margin-inline: auto; 
+      /* keep it centered since cam-wrapper can exceed 800px */
+  }
+}
+@media (max-width: 425px) {
+  .cam-title {
+    font-size: 24px;
+        margin-bottom:15px;
+
+  }
+
+  .cam-tabs {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px;
+  }
+  .cam-content-stack{
+    /* min-height: 250px; */
+
+  }
+
+  .cam-tab {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .cam-description {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .cam-image-clear-dual-lens {
+    width: 100vw;
+  }
+
+  .cam-label {
+    font-size: 18px;
+    bottom: 12px;
+    right: 16px;
+  }
+  .cam-face-auto-framing {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cam-face-corner {
+    width: 10px;
+    height: 10px;
+  }
+
+  .cam-ring-1 { width: 26px;  height: 26px; }
+  .cam-ring-2 { width: 52px;  height: 52px; }
+  .cam-ring-3 { width: 80px;  height: 80px; }
+  .cam-ring-4 { width: 108px; height: 108px; }
+
+  .cam-ports-connectivity {
+    gap: 14px;
+    bottom: 6%;
+  }
+  .cam-device-connectivity {
+    width: 62%;
+    top: 12%;
+  }
+}

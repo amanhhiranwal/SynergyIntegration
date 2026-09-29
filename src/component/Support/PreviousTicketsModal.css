@@ -1,0 +1,117 @@
+.sp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(1px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* padding: 24px; */
+}
+
+.sp-ticket-modal {
+  width: 100%;
+  background-color: #f5f5f5;
+  margin-left: clamp(16px, 5vw, 100px) !important;
+  margin-right: clamp(16px, 5vw, 100px);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  animation: spModalFadeIn 0.25s ease;
+}
+
+.sp-modal-header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-top: 30px;
+  padding-bottom: 18px;
+}
+
+.sp-modal-header h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--Colors-Secondary-300, rgba(0, 22, 84, 1));
+  letter-spacing: -0.5px;
+}
+
+.sp-close-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #4b5563;
+  position: absolute;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.sp-close-btn:hover {
+  background: #e5e7eb;
+  transform: scale(1.15);
+}
+
+.sp-modal-body {
+  margin-top: 24px;
+  max-height: 450px;
+  padding-bottom: 50px;
+  overflow-y: auto;
+}
+
+.sp-modal-body > p {
+  margin-bottom: 20px;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sp-model-items p {
+  text-align: center;
+}
+
+.sp-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sp-modal-body::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+@keyframes spModalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 1023px){
+  .sp-modal-header h2{
+    font-size: 32px;
+  }
+}
+
+
+
+@media (max-width: 480px){
+  .sp-modal-header h2{
+    font-size: 21px;
+  }
+}

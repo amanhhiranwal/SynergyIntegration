@@ -1,0 +1,856 @@
+/* ============================================
+   VIEWPORT ANIMATION CONTROL
+============================================ */
+
+.ptz-container * {
+  animation-play-state: paused !important;
+}
+
+.ptz-container.ptz-in-view * {
+  animation-play-state: running !important;
+}
+
+.ptz-container {
+  /* min-height: 600px; */
+  width: 100%;
+  padding: 60px 50px;
+  font-family: "Inter", sans-serif;
+  --heading-color: #001654;
+  --tabs-bg: #001654;
+  --dark-text: 131313;
+  padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px) !important;
+  /* margin-bottom: 180px; */
+  background-color: #efefef;
+  
+}
+/* ============================================
+   LAYER CROSSFADE STACK
+   ============================================ */
+
+
+/* grid stack: all layers share one cell, so height auto-fits
+   the tallest layer — no absolute positioning, no collapse */
+.ptz-content-stack {
+   position: relative;
+  width: 100%;
+  min-height: 620px;
+}
+
+.ptz-content {
+ width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* animation: ptzFadeIn ...  ← removed, layers handle it now */
+}
+
+.ptz-layer {
+ position: relative;
+ inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;               /* hidden by default */
+  transition: opacity 0.6s ease;   /* match TRANSITION_MS = 500 */
+  will-change: opacity;
+  pointer-events: none;
+}
+
+.ptz-layer-entering {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ptz-layer-active {
+   opacity: 1;
+  pointer-events: auto;
+}
+
+.ptz-layer-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.ptz-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-width: 800px; */
+}
+
+
+.ptz-title {
+  font-size: 44px;
+  font-weight: 400;
+  color: var(--heading-color);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.ptz-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  /* flex-wrap: wrap; */
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.ptz-tab {
+  padding: 12px 40px;
+  border: none;
+  border-radius: 16px;
+  background-color: #f5f5f7;
+  color: var(--dark-text);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ptz-tab-active {
+  background-color: var(--tabs-bg);
+  color: #ffffff;
+}
+
+.ptz-tab-active:hover {
+  background-color: #0a1b3d;
+}
+
+/* .ptz-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: ptzFadeIn 0.5s ease;
+}
+
+@keyframes ptzFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+.ptz-icon-wrapper {
+  margin-bottom: 24px;
+}
+
+.ptz-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.ptz-description {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 800px;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+/* .ptz-image-wrapper {
+  width: 100%;
+  aspect-ratio: 2/1;
+  max-height: 390px;
+  max-width: 800px;
+  border-radius: 22px;
+  overflow: hidden;
+} */
+ .ptz-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  max-height: 390px;
+  max-width: 800px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+
+.ptz-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+/* Update your existing .ptz-image-wrapper – add position: relative */
+/* .ptz-image-wrapper {
+  position: relative; 
+  width: 100%;
+  aspect-ratio: 2/1;
+  max-height: 400px;
+  max-width: 800px;
+  border-radius: 22px;
+  overflow: hidden;
+} */
+
+/* Zoom animation for the image */
+.ptz-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  
+  transform-origin: 50% 42%; /* focuses on face area */
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  
+}
+
+.ptz-zoom-4 {
+  transform: scale(1);
+}
+.ptz-zoom-8 {
+  transform: scale(2);
+}
+.ptz-zoom-12 {
+  transform: scale(3);
+}
+
+/* Reticle overlay (square + crosshair lines) */
+/* Reticle overlay (square + crosshair lines that stop at the square) */
+.ptz-reticle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.3s;
+  z-index: 2;
+}
+
+.ptz-reticle-visible {
+  opacity: 1;
+}
+
+/* Horizontal line – left segment (from left edge to square) */
+.ptz-reticle-hline-left {
+  position: absolute;
+  top: 42%;
+  left: 0;
+  width: calc(50% - 36px); /* 36px = half of square width (72px) */
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Horizontal line – right segment (from square to right edge) */
+.ptz-reticle-hline-right {
+  position: absolute;
+  top: 42%;
+  right: 0;
+  width: calc(50% - 36px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Vertical line – top segment (from top edge to square) */
+.ptz-reticle-vline-top {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: calc(42% - 36px); /* 36px = half of square height */
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%);
+}
+
+/* Vertical line – bottom segment (from square to bottom edge) */
+.ptz-reticle-vline-bottom {
+  position: absolute;
+  left: 50%;
+  top: calc(42% + 36px);
+  width: 1px;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%);
+}
+
+.ptz-reticle-box {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 72px;
+  height: 72px;
+  border: 2px solid #fff;
+  transform: translate(-50%, -50%);
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); */
+}
+
+/* Zoom level label */
+.ptz-zoom-label {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+/* ============================================
+   ANIMATION 2: WIDE  (ptz-anim-wide)
+   Image zooms out from 1.3 to 1.0
+   ============================================ */
+.ptz-anim-wide {
+  transform-origin: 50% 55%;
+  transform: scale(1.3); /* zoom out toward camera area */
+  animation: ptzWideZoomOut 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes ptzWideZoomOut {
+  0%   { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Overlay wrapper */
+.ptz-wide-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dashed lines from camera (top-center) to bottom corners
+   They appear INSTANTLY after zoom-out completes (2s delay) */
+.ptz-wide-line {
+  position: absolute;
+  top: 50%;              /* camera position (adjust to match your image) */
+  left: 48.3%;
+  height: 2px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.9) 50%,
+    transparent 50%
+  );
+  background-size: 14px 2px;
+  background-repeat: repeat-x;
+  transform-origin: left center;
+  opacity: 0;
+  animation: ptzWideLineAppear 0.01s linear 2s forwards; /* instant */
+}
+
+.ptz-wide-line-left {
+  width: 55%;
+  transform: rotate(155deg); /* down-left */
+}
+
+.ptz-wide-line-right {
+  width: 55%;
+  transform: rotate(25deg);  /* down-right */
+}
+
+@keyframes ptzWideLineAppear {
+  to { opacity: 1; }
+}
+
+/* Arc – smoothly drawn using stroke-dasharray trick */
+.ptz-wide-arc {
+  position: absolute;
+  top: 55%;
+  left: 48%;
+  width: 120px;
+  height: 45px;
+  transform: translateX(-50%) scaleY(-1); /* 👈 flip vertically */
+  overflow: visible;
+}
+
+.ptz-wide-arc path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: ptzWideArcDraw 1.2s ease-out 2.2s forwards;
+}
+
+@keyframes ptzWideArcDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Angle text – fades in smoothly after arc */
+.ptz-wide-text {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  /* text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); */
+  opacity: 0;
+  animation: ptzWideTextFade 0.8s ease-out 3.2s forwards;
+}
+
+@keyframes ptzWideTextFade {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Blurred base image */
+/* Full blurred collage underneath */
+.ptz-hd-base {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+
+  filter: blur(12px);
+  transform: scale(1.05);
+}
+
+/* Collage layout used by both layers */
+.ptz-hd-collage {
+  display: grid;
+  width: 100%;
+  height: 100%;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  grid-template-areas:
+    "top right"
+    "bottom right";
+
+  gap: 0;
+}
+
+.ptz-hd-collage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.ptz-hd-collage img:nth-child(1) {
+  grid-area: top;
+}
+
+.ptz-hd-collage img:nth-child(2) {
+  grid-area: bottom;
+}
+
+.ptz-hd-collage img:nth-child(3) {
+  grid-area: right;
+}
+
+/* Sharp collage with angled reveal */
+.ptz-hd-clear {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+
+  clip-path: polygon(
+    0 0,
+    0 0,
+    -20% 100%,
+    0 100%
+  );
+
+  animation: ptzHdReveal 0.9s ease-in-out 0.2s both;
+}
+
+@keyframes ptzHdReveal {
+  0% {
+    clip-path: polygon(
+      0 0,
+      0 0,
+      -20% 100%,
+      0 100%
+    );
+  }
+
+  100% {
+    clip-path: polygon(
+      0 0,
+      120% 0,
+      100% 100%,
+      0 100%
+    );
+  }
+}
+
+/* Shine above the collage */
+.ptz-hd-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ptz-hd-shine {
+  position: absolute;
+  top: 0;
+  left: -22.5%;
+  width: 25%;
+  height: 100%;
+
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 100%
+  );
+
+  transform: skewX(-20deg);
+  filter: blur(6px);
+
+  animation: ptzHdShine 0.9s ease-in-out 0.2s both;
+  
+}
+.ptz-hd-collage img{
+    animation: zoom-image 0.6s ease-in-out 0.2s forwards;
+    animation-delay: 1s;
+
+}
+
+/* ============================================
+   ANIMATION 4: AUTO FRAMING  (ptz-anim-framing)
+   0.25s  detection square locks on
+   0.70s  square blinks 3x
+   1.90s  original squeezes  +  right frame opens
+   ============================================ */
+
+.ptz-frame-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: hidden;
+
+  /* 🎯 tune the detection square to your photo */
+  --fx-left: 52%;   /* horizontal center of the person */
+  --fx-top: 31%;    /* vertical center of the person   */
+  --fx-w: 13%;      /* square width (% of image width) */
+
+
+  /* 🎯 START — box appears here (wider, over the seated group) */
+  --fx-from-left:48%;
+  --fx-from-top:  42%;
+  --fx-from-w:    13%;
+
+  /* 🎯 tune the split */
+  --squeeze: 68%;   /* left panel final width */
+  --panel: 32%;     /* right panel final width */
+    container-type: size;   /* 👈 makes cqw/cqh = the FULL stage box */
+
+  --main-zoom: 1;         /* 1 = no zoom at all. 1.03–1.05 = tiny push-in */
+  --main-focus: 42%;    
+}
+
+/* ---------- left (original) ---------- */
+.ptz-frame-main {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+  animation: ptzFrameSqueeze 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1.9s forwards;
+}
+
+@keyframes ptzFrameSqueeze {
+  to { flex-basis: var(--squeeze); }
+}
+
+.ptz-frame-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 👉 swap to `fill` if you want a literal horizontal squeeze */
+}
+
+/* ---------- right (auto-framed subject) ---------- */
+.ptz-frame-side {
+  position: relative;
+  flex: 0 0 0%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  /* box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.9);  */
+  animation: ptzFrameOpen 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1.9s forwards;
+}
+
+@keyframes ptzFrameOpen {
+  0%   { flex-basis: 0%;           opacity: 0; }
+  35%  {                            opacity: 1; }
+  100% { flex-basis: var(--panel); opacity: 1; }
+}
+
+/* subject settles after the panel opens */
+.ptz-frame-side-img {
+  transform: scale(1.01);
+  animation: ptzFrameSettle 1.1s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+}
+
+@keyframes ptzFrameSettle {
+  to { transform: scale(1); }
+}
+
+/* ---------- detection square ---------- */
+.ptz-frame-box {
+  position: absolute;
+
+  /* start where the animation begins (scanning the group) */
+  left: var(--fx-from-left);
+  top: var(--fx-from-top);
+  width: var(--fx-from-w);
+
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%) scale(1.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+
+  animation:
+    /* 1. fade + pop in at the START position */
+    ptzFrameLock  0.5s cubic-bezier(0.2, 0.9, 0.3, 1) 0.25s forwards,
+    /* 2. glide from START → FINAL position */
+    ptzFrameTrack 0.9s cubic-bezier(0.45, 0, 0.15, 1) 0.85s forwards,
+    /* 3. fade out before the split (delete to keep the box) */
+    ptzFrameBoxOut 0.45s ease-in-out 2.65s forwards;
+}
+
+/* travel: only left/top/width animate, so transform stays free
+   for the lock/out scale animations (no conflict) */
+@keyframes ptzFrameTrack {
+  to {
+    left:  var(--fx-left);
+    top:   var(--fx-top);
+    width: var(--fx-w);
+  }
+}
+
+
+@keyframes ptzFrameLock {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(1.35); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes ptzFrameBoxOut {
+  
+  to { opacity: 1; transform: translate(-50%, -80%) scale(1.2); }
+}
+
+/* inner element carries the blink so it never fights the lock/fade opacity */
+.ptz-frame-box-inner {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18), 0 0 12px rgba(0, 0, 0, 0.25); */
+  animation: ptzFrameBlink 0.36s steps(1, end) 0.72s 3;
+}
+
+@keyframes ptzFrameBlink {
+  0%,  49%  { opacity: 1; }
+  50%, 100% { opacity: 0.45; }
+}
+
+@keyframes zoom-image {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes ptzHdShine {
+  0% {
+    left: -22.5%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 97.5%;
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   LAYER CROSSFADE STACK
+============================================ */
+
+.ptz-content-stack {
+   position: relative;
+  width: 100%;
+  min-height: 620px;
+
+  /* Prevent relative layers from affecting the
+     surrounding layout while transitioning */
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+
+/* ============================================
+   CONTENT
+============================================ */
+
+.ptz-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ============================================
+   PTZ LAYER
+   Keep position: relative
+============================================ */
+
+.ptz-layer {
+  position: relative;
+  width: 100%;
+
+  /* Put every layer in the same grid cell */
+  grid-column: 1;
+  grid-row: 1;
+
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  will-change: opacity;
+  pointer-events: none;
+
+  /* Prevent the layer's content from changing
+     the stack dimensions */
+  min-width: 0;
+}
+
+
+/* ============================================
+   LAYER STATES
+============================================ */
+
+.ptz-layer-entering {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ptz-layer-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ptz-layer-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* mobile: keep the split readable */
+@media (max-width: 1023px) {
+  /* .ptz-frame-stage { --squeeze: 62%; --panel: 38%; --fx-w: 24%; } */
+
+  .ptz-tabs {
+    display: none !important;
+  }
+
+  .ptz-description {
+    display: none;
+  }
+
+  .ptz-description,
+  .ptz-icon-wrapper {
+    display: none;
+  }
+
+  .ptz-wrapper {
+    width: 100%;
+  }
+
+  .ptz-mobile-nav {
+    width: 100%;
+  }
+
+  .ptz-title {
+    font-size: 32px;
+    margin-bottom: 18px;
+  }
+
+  .ptz-image-wrapper {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 2 / 1;
+    max-height: 390px;
+  }
+
+  .ptz-content-stack {
+    min-height: 0;
+    aspect-ratio: 2 / 1;
+    max-height: 390px;
+    max-width: 800px;
+    margin-inline: auto;
+  }
+}
+
+
+
+
+
+@media (max-width: 425px) {
+  .ptz-title {
+    font-size:24px;
+    margin-bottom: 15px;
+  }
+  /* .ptz-tabs {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px;
+  } */
+  /* .ptz-tab {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+  } */
+  .ptz-description {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  .ptz-content-stack {
+  /* min-height: 150px; */
+     min-height: 0;
+    aspect-ratio: 2 / 1;
+    max-height: 390px;
+    max-width: 800px;
+    margin-inline: auto;
+}
+}
+/* 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .ptz-tab {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+} */

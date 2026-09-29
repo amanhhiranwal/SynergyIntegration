@@ -1,0 +1,750 @@
+.main-home-page-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+}
+
+.main-home-page-sec > .footer {
+  margin-top: -140px;
+}
+
+
+.info-section {
+  position: relative;
+  background-color: #f5f5f5;
+  margin: 1.5rem 2rem;
+  /* margin-top: 4rem; */
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 604px;
+  padding: 0;
+}
+
+.info-section .mobile-product-card {
+  position: relative;
+  /* min-height: 604px; */
+  padding: 0;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.info-section .section-headings {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 100%;
+  padding: 0 16px;
+  margin: 0;
+  text-align: center;
+}
+
+.info-section .section-title {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.info-section .section-subtitle {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #8a8a8a;
+  margin: 4px 0 0;
+}
+
+.info-sec-image-container {
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.info-section-image {
+  display: block;
+  /* width: 870px; */
+  /* width: 870px; */
+
+  max-width: 88%;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.meta {
+  display: none;
+}
+
+.btn-discover {
+  /* display: inline-block;
+  margin-top: 40px;
+  /* background-color: #ff6f61;
+  background-color: #163e5a;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;  */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 40px;
+  /* background-color: #163e5a; */
+  background-color: #001654;
+  color: #fff;
+  padding: 12px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-discover:hover {
+  background-color: #14275bcc;
+  color: #fff;
+}
+
+/* ==========================================================================
+   DUAL PRODUCT SECTION — "Advertising Display & Signage" + "Kiosk & Smart Display"
+   Figma spec (desktop, 1440 viewport):
+     section width 1392 · card 684 x 604 · gap 24 · card radius 16 · bg #F5F5F5
+     title    Inter 400 / 36px / lh 1.2 / #131313  -> cap top sits 48px below card top
+     subtitle Inter 500 / 16px / lh 1.4 / #848484  -> 5px under the title
+     button   132 x 36 · radius 8 · #001654 · 14px/500 white -> 42px under subtitle
+     image    bottom-anchored, fills the card (PNG 1280x1131 == 684x604 card)
+   ========================================================================== */
+
+.dual-product-section {
+  margin: 0rem 2rem; /* 24px side margins -> 1392px section @1440 */
+}
+
+/* remove the Bootstrap container padding so the cards sit flush with the 24px margins */
+.dual-product-section .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ------------------------------- card ---------------------------------- */
+/* ------------------- product image (bottom anchored) ------------------- */
+.dual-product-section .product-card {
+  position: relative;
+  height: 604px;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: #f5f5f5;
+  /* min-height: 604px; */
+}
+
+.dual-product-section .product-card .dual-sec-image-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.dual-product-section
+  .product-card
+  .dual-sec-image-container
+  .info-section-image {
+  display: block;
+  width: 88%;
+  max-width: 88%;
+  height: auto;
+  margin: 0;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.dual-product-section .product-card .dual-sec-image-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 67%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.dual-product-section
+  .product-card
+  .dual-sec-image-container
+  .info-section-image {
+  display: block;
+  width: 88%;
+  max-width: 88%;
+  height: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: bottom center;
+}
+/* ---------------------------- heading block ---------------------------- */
+.dual-product-section .product-card-head {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding: 0 24px;
+  box-sizing: border-box;
+  text-align: center;
+
+  /* Inter v4 ships an optical-size axis; Chrome's `auto` default renders the
+     36px title ~9% narrower than the Figma file (which uses the static Inter).
+     Pin it so widths match the design.                                            */
+  font-optical-sizing: none;
+}
+
+.dual-product-section .product-card-head .section-title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #131313;
+}
+
+.dual-product-section .product-card-head .section-subtitle {
+  margin: 6px 0 0;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #848484;
+}
+/* ============================================================
+   DUAL PRODUCT MARKERS
+   ============================================================ */
+
+/* Marker common */
+.dual-product-section .dual-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Marker line */
+.dual-product-section .dual-marker-line {
+  background: #848484;
+  position: relative;
+}
+
+/* Small circle at line start */
+.dual-product-section .dual-marker-line::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #848484;
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* Marker label */
+.dual-product-section .dual-marker-label {
+  font-size: 14px;
+  color: #6c6c6c;
+  margin: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: dualFadeInLabel 0.5s 1s forwards;
+}
+
+/* ============================================================
+   VERTICAL MARKERS
+   ============================================================ */
+
+.dual-product-section .dual-marker.vertical {
+  flex-direction: column-reverse;
+}
+
+/* Left card - vertical marker */
+.dual-product-section .dual-marker-left.vertical {
+  bottom: 12%;
+  right: 30%;
+}
+
+/* Right card - vertical marker */
+.dual-product-section .dual-marker-right.vertical {
+  bottom: 23%;
+  right: 29%;
+}
+
+/* Vertical line */
+.dual-product-section .dual-marker.vertical .dual-marker-line {
+  width: 2px;
+  height: 0;
+  transform-origin: bottom center;
+  animation: dualDrawLineVertical 1s forwards;
+}
+
+/* Vertical marker dot */
+.dual-product-section .dual-marker.vertical .dual-marker-line::after {
+  left: -3px;
+}
+
+/* ============================================================
+   HORIZONTAL MARKERS
+   ============================================================ */
+
+.dual-product-section .dual-marker.horizontal {
+  flex-direction: row;
+}
+
+/* Left card - horizontal marker */
+.dual-product-section .dual-marker-left.horizontal {
+  bottom: 40%;
+  left: 53%;
+}
+
+/* Right card - horizontal marker */
+.dual-product-section .dual-marker-right.horizontal {
+  top: 45%;
+  left: 46%;
+}
+
+/* Horizontal line */
+.dual-product-section .dual-marker.horizontal .dual-marker-line {
+  width: 0;
+  height: 2px;
+  transform-origin: left center;
+  animation: dualDrawLineHorizontal 1s forwards;
+}
+
+/* Horizontal marker dot */
+.dual-product-section .dual-marker.horizontal .dual-marker-line::after {
+  top: -3px;
+  right: -4px;
+}
+
+/* ============================================================
+   MARKER ANIMATIONS
+   ============================================================ */
+
+@keyframes dualDrawLineVertical {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 70px;
+  }
+}
+
+@keyframes dualDrawLineHorizontal {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 80px;
+  }
+}
+
+@keyframes dualFadeInLabel {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1023px) {
+    .dual-product-section{
+        margin-left: clamp(16px, 5vw, 100px) !important;
+  margin-right: clamp(16px, 5vw, 100px) !important;
+    }
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 12%;
+    right: 30%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 27%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 15%;
+    right: 19%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 60%;
+    left: 46%;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  @keyframes dualDrawLineVertical {
+    0% {
+      height: 0;
+    }
+
+    100% {
+      height: 40px;
+    }
+  }
+
+  @keyframes dualDrawLineHorizontal {
+    0% {
+      width: 0;
+    }
+
+    100% {
+      width: 30px;
+    }
+  }
+
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 17%;
+    right: 30%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 40%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 24%;
+    right: 29%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 40%;
+    left: 47%;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+
+/* ============================ TABLET / SMALL LAPTOP  (<= 1199px) ========
+   Below ~1200px the two cards can no longer hold a 36px title on one line,
+   so they stack full width (same order, same content).                     */
+/* ============================ TABLET / LAPTOP (<= 1199px) ============================ */
+@media (max-width: 1199.98px) {
+  .dual-product-section .mobile-product-card-home {
+    width: 100%;
+  }
+
+  .dual-product-section .product-card {
+    height: 600px;
+  }
+
+  .dual-product-section .product-card-head {
+    top: 36px;
+  }
+}
+
+/* ============================ TABLET (<= 1023px) ============================ */
+@media (max-width: 1023.98px) {
+  .dual-product-section .product-card {
+    height: 540px;
+  }
+  .main-home-page-sec{
+    gap: 40px;
+  }
+    .info-section,
+  .dual-product-section {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  .btn-discover{
+  /* padding: 40px 20px; */
+  /* height: 30px; */
+
+}
+.main-home-page-sec > .footer {
+  margin-top: -40px;
+}
+
+
+
+
+  .dual-product-section .product-card-head {
+    top: 32px;
+  }
+
+  .dual-product-section .product-card-head .section-title {
+    font-size: 32px;
+  }
+
+  .dual-product-section .product-card-head .section-subtitle {
+    font-size: 14px;
+  }
+  /* Remove Bootstrap row gutter from affecting the card width */
+  .dual-product-section .row {
+    --bs-gutter-x: 0;
+  }
+
+  .dual-product-section .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .dual-product-section .mobile-product-card-home {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ============================ MOBILE (<= 768px) ============================ */
+@media (max-width: 768px) {
+  /* ---------- Dual Product Section ---------- */
+  .dual-product-section {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .dual-product-section .product-card {
+    height: 400px;
+  }
+
+  .dual-product-section .product-card-head {
+    top: 28px;
+    padding: 0 18px;
+  }
+
+  .dual-product-section .product-card-head .section-title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .dual-product-section .product-card-head .section-subtitle {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  /* ---------- Info Section ---------- */
+  .info-section {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    margin-left: clamp(16px, 5vw, 100px) !important;
+    margin-right: clamp(16px, 5vw, 100px) !important;
+    min-height: 400px;
+    padding: 0 !important;
+  }
+
+  .info-section .mobile-product-card-home {
+    /* min-height: 330px; */
+    padding: 0;
+  }
+
+  .info-section .section-headings {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 14px;
+    margin: 0;
+  }
+
+  .info-section .section-title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .info-section .section-subtitle {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  /* .info-section .btn-discover {
+    margin-top: 20px;
+    font-size: 9px;
+    min-width: 78px;
+    height: 22px;
+    padding: 0 20px;
+  } */
+
+  .info-sec-image-container {
+    bottom: -1px;
+  }
+
+  .info-section-image {
+    width: clamp(360px, 78vw, 560px);
+    max-width: 88%;
+    height: auto;
+  }
+}
+
+/* ============================ SMALL MOBILE (<= 480px) ============================ */
+@media (max-width: 480px) {
+
+    .info-section{
+        min-height: 330px;
+    }
+  .info-section-image {
+    width: 100%;
+  }
+
+  .info-section .mobile-product-card-home {
+    height: 330px;
+  }
+  .dual-product-section .product-card {
+    height: 330px;
+  }
+
+
+
+  .dual-product-section .product-card-head {
+    top: 20px;
+    padding: 0 16px;
+  }
+
+  .dual-product-section .product-card-head .section-title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .dual-product-section .product-card-head .section-subtitle {
+    font-size: 11px;
+  }
+}
+
+.clients-heading {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.clients-subtitle {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 20px;
+}
+
+/* Tablet */
+@media (max-width: 1023.98px) {
+  .clients-heading {
+    font-size: 28px;
+  }
+
+  .clients-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .clients-heading {
+    font-size: 28px;
+    line-height: 1.25;
+    margin-top: 2rem;
+  }
+
+  .clients-subtitle {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0 24px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+   .dual-product-section .product-card-head .section-title {
+    font-size: 24px;
+   }
+  .info-section .section-title{
+    font-size: 24px;
+  }
+  .clients-heading {
+    font-size: 24px;
+  }
+
+  .clients-subtitle {
+    font-size: 12px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .dual-product-section .product-card {
+    height: 600px;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .dual-product-section .product-card {
+
+    height: 540px;
+  }
+  .btn-discover {
+    margin-top: 15px;
+        padding: 8px 38px;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .dual-product-section .product-card {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dual-product-section .product-card {
+    height: 360px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 12%;
+    right: 23%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 27%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 17%;
+    right: 19%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 49%;
+    left: 46%;
+  }
+}

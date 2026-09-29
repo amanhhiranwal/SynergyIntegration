@@ -1,0 +1,467 @@
+.btp-section {
+  background-color: #f5f5f5;
+  width: 100%;
+  /* padding: clamp(32px, 4vw, 60px) 0 0 clamp(20px, 6vw, 100px); */
+    padding: 0 0 0 clamp(20px, 6vw, 100px);
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+  /* min-height: clamp(520px, 65vw, 760px); */
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  contain: layout;
+}
+
+.btp-section-made-for-creation {
+  margin-top: 100px;
+  background: #efefef;
+  background-color: #f5f5f5;
+  width: 100%;
+  padding:0 clamp(20px, 6vw, 100px) 0 0;
+  overflow: hidden;
+  /* font-family: "DM Sans", sans-serif; */
+    font-family: "Inter", sans-serif;
+
+  /* min-height: clamp(520px, 65vw, 760px); */
+  position: relative;
+  isolation: isolate;
+  contain: layout paint;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================================
+   CONTENT COLUMN
+============================================================ */
+
+.btp-content-col {
+  padding: clamp(14px, 2vw, 20px) clamp(18px, 3vw, 40px) clamp(14px, 2vw, 20px)
+    0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  contain: layout;
+  transform: translateZ(0);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.btp-section-made-for-creation .btp-content-col {
+  padding: clamp(14px, 2vw, 20px) 0 clamp(14px, 2vw, 20px)
+    clamp(18px, 3vw, 40px);
+  justify-content: flex-start;
+}
+
+/* ============================================================
+   STATIC HEADER
+============================================================ */
+
+.btp-static-header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-bottom: clamp(20px, 3vw, 36px);
+  transform: translateZ(0);
+  min-height: 120px;
+  flex-shrink: 0;
+}
+
+.btp-static-header .btp-subtext {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+
+.btp-headline {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: clamp(36px, 4vw, 52px);
+  letter-spacing: 0;
+  text-align: left;
+  color: #001654;
+  margin-bottom: clamp(8px, 1vw, 10px);
+}
+
+.btp-subtext {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: clamp(22px, 1.8vw, 24px);
+  letter-spacing: 0;
+  text-align: left;
+  color: #4c4c4c;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   FEATURE LIST
+============================================================ */
+
+.btp-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.btp-feature-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.btp-feature-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: clamp(16px, 2vw, 26px) 0 clamp(10px, 1vw, 14px) 22px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.btp-feature-item.active {
+  flex: 0 0 auto;
+}
+
+/* ============================================================
+   PROGRESS BAR
+============================================================ */
+
+.btp-feature-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+
+.btp-feature-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 0%;
+  background: #1a2b4a;
+  border-radius: 2px;
+  transform-origin: top center;
+}
+
+.btp-feature-item.active::after {
+  animation: btp-fill-bar 4s linear forwards;
+}
+
+@keyframes btp-fill-bar {
+  from {
+    height: 0%;
+  }
+  to {
+    height: calc(100% - 16px);
+  }
+}
+
+/* ============================================================
+   FEATURE TITLE
+============================================================ */
+
+.btp-feature-title {
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+  font-weight: 600;
+  color: #6c6c6c;
+  margin-bottom: 0;
+  line-height: clamp(20px, 2vw, 22px);
+  min-height: 22px;
+  transition: color 0.3s ease;
+}
+
+.btp-feature-item.active .btp-feature-title {
+  color: #1a2b4a;
+  font-weight: 700;
+}
+
+/* ============================================================
+   FEATURE DESC
+============================================================ */
+
+.btp-feature-desc-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.btp-feature-item.active .btp-feature-desc-wrapper {
+  max-height: 80px;
+}
+
+.btp-feature-desc {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: #6c6c6c;
+  line-height: 1.5;
+  max-width: min(280px, 90%);
+  margin: 0;
+  padding-top: 4px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(0, 5px, 0);
+  animation: btp-desc-in 0.3s ease 0.05s forwards;
+}
+
+@keyframes btp-desc-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ============================================================
+   IMAGE COLUMN
+============================================================ */
+
+.btp-images-col {
+  padding: 0;
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(260px, 32vw, 520px); /* */
+  width: 100%;
+  align-self: stretch;
+}
+
+/* ============================================================
+   MONITOR WRAPPER
+============================================================ */
+
+.btp-monitor-wrapper {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ============================================================
+   SCREEN CONTAINER
+============================================================ */
+
+.btp-screen-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
+  background: #efefef;
+  contain: paint;
+}
+
+/* ============================================================
+   SLOTS
+============================================================ */
+
+.btp-slot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  backface-visibility: hidden;
+  contain: paint;
+  will-change: clip-path;
+  transform: translateZ(0);
+}
+
+/* ============================================================
+   IMAGES
+============================================================ */
+
+.btp-slot .btp-screen-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  user-select: none;
+}
+
+@media (max-width: 991px) and (min-width: 769px) {
+  .btp-section,
+  .btp-section-made-for-creation {
+    padding: 40px 32px 0;
+    margin-bottom: 56px;
+    min-height: auto;
+    overflow: hidden;
+    contain: none;
+  }
+  .btp-section .row,
+  .btp-section-made-for-creation .row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: auto;
+  }
+  .btp-content-col,
+  .btp-section-made-for-creation .btp-content-col {
+    order: 1;
+    width: 100%;
+    max-width: 680px;
+    padding: 0;
+    flex: none;
+    contain: none;
+    transform: none;
+  }
+  .btp-images-col {
+    order: 2;
+    width: 100%;
+    min-height: 280px;
+    max-height: 420px;
+    aspect-ratio: 16 / 9;
+    padding-top: 20px;
+    flex: none;
+    align-self: center;
+  }
+  .btp-monitor-wrapper {
+    width: 88%;
+    margin: 0 auto;
+  }
+  .btp-screen-container {
+    width: 100%;
+    height: 100%;
+  }
+  .btp-static-header {
+    margin-bottom: 28px;
+    min-height: auto;
+  }
+  .btp-headline {
+    font-size: 40px;
+    line-height: 46px;
+  }
+  .btp-subtext {
+    font-size: 15px;
+    line-height: 24px;
+    max-width: 620px;
+  }
+  .btp-feature-item {
+    padding: 18px 0 14px 22px;
+  }
+  .btp-feature-desc-wrapper {
+    transition: none;
+  }
+  .btp-slot {
+    will-change: auto;
+  }
+   .btp-section,
+  .btp-section-made-for-creation {
+    padding: 0px 16px 0;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    min-height: auto;
+    overflow: hidden;
+    contain: none;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 768px) {
+  .btp-section,
+  .btp-section-made-for-creation {
+    padding: 0px 16px 0;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    min-height: auto;
+    overflow: hidden;
+    contain: none;
+  }
+  .btp-section .row,
+  .btp-section-made-for-creation .row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: auto;
+  }
+  .btp-content-col,
+  .btp-section-made-for-creation .btp-content-col {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    flex: none;
+    contain: none;
+    transform: none;
+  }
+  .btp-images-col {
+    order: 2;
+    width: 100%;
+    min-height: 220px;
+    max-height: 320px;
+    aspect-ratio: 16 / 9;
+    padding-top: 16px;
+    flex: none;
+    align-self: center;
+  }
+  .btp-monitor-wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .btp-screen-container {
+    width: 100%;
+    height: 100%;
+  }
+  .btp-static-header {
+    margin-bottom: 24px;
+    min-height: auto;
+  }
+  .btp-headline {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  .btp-subtext {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .btp-feature-item {
+    padding: 16px 0 12px 20px;
+  }
+  .btp-feature-title {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .btp-feature-desc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .btp-feature-desc-wrapper {
+    transition: none;
+  }
+  .btp-slot {
+    will-change: auto;
+  }
+}
+
+@media (max-width: 480px) {
+.btp-headline {
+  font-size: 24px;
+}
+}

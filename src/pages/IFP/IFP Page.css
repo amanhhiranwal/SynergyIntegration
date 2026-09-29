@@ -1,0 +1,653 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+.ifp-page {
+  background-color: #f5f5f5;
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero {
+  background: linear-gradient(to top right, #14234c 0%, #3d4c75 100%);
+
+  /* min-height: 100vh; */
+  /* min-height: 85vh;  */
+
+  padding-top: 44px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-curve {
+  position: absolute;
+
+  bottom: -10%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 145%;
+  height: 62%;
+
+  background: #f5f5f5;
+
+  border-radius: 60%;
+
+  z-index: 0;
+}
+
+.hero-title {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 400;
+
+  font-size: 44px;
+  line-height: 52px;
+
+  text-align: center;
+
+  color: #fff;
+
+  /* margin-bottom: 18px; */
+}
+
+.hero-sub {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 500;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  margin-bottom: 48px;
+}
+
+.hero-sub-divider {
+  display: inline-block;
+
+  width: 1px;
+  height: 15px;
+
+  background: #f5f5f5;
+
+  flex-shrink: 0;
+}
+
+.hero-monitor-wrap {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.hero-ifp-image {
+  position: relative;
+  bottom: 50px;
+}
+
+/* =====================================================
+   SCALE SECTION
+===================================================== */
+
+.scale-section {
+  background: #f5f5f5;
+/* padding-top: clamp(40px, 6.94vw, 100px); */
+  padding: 10px 40px 70px;
+  
+}
+
+/* ---------- TITLE ---------- */
+
+.section-title {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 400;
+
+  font-size: 44px;
+  line-height: 52px;
+
+  text-align: center;
+
+  color: #001654;
+
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 500;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  text-align: center;
+
+  color: #4c4c4c;
+
+  margin-bottom: 42px;
+}
+
+/* ---------- FILTER BUTTONS ---------- */
+
+.size-filters {
+  display: flex;
+
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-bottom: 48px;
+}
+
+.size-btn {
+  /* min-width: 144px; */
+  height: 47px;
+
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #e9e9e9;
+  color: #001654;
+
+  font-family: "Inter", sans-serif;
+
+  font-weight: 600;
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition:
+    all 0.3s ease,
+    transform 0.2s ease;
+}
+
+.size-btn:hover {
+  transform: translateY(-2px);
+}
+
+.size-btn.active {
+  background: #001654;
+  color: #fff;
+}
+
+/* ---------- GRID ---------- */
+/* 
+.product-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 24px;
+
+  max-width: 1280px;
+
+  margin: 0 auto 40px;
+} */
+
+/* ---------- PRODUCT CARD ---------- */
+
+/* .product-card_ifp {
+  background: #fff;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card_ifp:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+} */
+
+/* ---------- IMAGE WRAPPER ---------- */
+/* 
+.abstract-art {
+  position: relative;
+
+  overflow: hidden;
+
+  aspect-ratio: 16 / 10;
+
+  background: #f8f8f8;
+} */
+
+/* ---------- IMAGE SLIDE EFFECT ---------- */
+
+/* .abstract-art .img-default,
+.abstract-art .img-hover {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  transition: transform 0.5s ease;
+}
+
+.abstract-art .img-default {
+  transform: translateX(0%);
+}
+
+.product-card_ifp:hover .img-default {
+  transform: translateX(-100%);
+}
+
+.abstract-art .img-hover {
+  transform: translateX(100%);
+}
+
+.product-card_ifp:hover .img-hover {
+  transform: translateX(0%);
+} */
+
+/* ---------- PRODUCT INFO ---------- */
+
+/* .product-info {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-name {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 500;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #131313;
+
+  margin-bottom: 6px;
+}
+
+.product-spec {
+  font-family: "Inter", sans-serif;
+
+  font-weight: 400;
+
+  font-size: 13px;
+  line-height: 18px;
+
+  color: #777;
+
+  margin-bottom: 8px;
+} */
+
+/* ---------- BUTTON ---------- */
+
+/* .btn-view {
+  width: 100%;
+  min-height: 44px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #001654;
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+margin-top: auto;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-view:hover {
+  background: #0f2460;
+
+  transform: translateY(-2px);
+} */
+
+/* PRODUCT SLIDER */
+.products-slider-ifp {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.products-window-ifp {
+  flex: 1;
+  overflow: hidden;
+}
+
+.products-track-ifp {
+  display: flex;
+  transition: transform 700ms ease-in-out !important;
+  will-change: transform;
+  width: 100%;
+}
+
+.page-ifp {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.slider-arrow-ifp {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  /* background: #111; */
+  background: #001654;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+
+.slider-arrow-ifp:hover:not(:disabled) {
+  background: #334881;
+}
+
+.slider-arrow-ifp:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+/* ---------- VIEW ALL ---------- */
+
+.view-all-wrap {
+  text-align: center;
+}
+
+.btn-view-all {
+  display: inline-block;
+  text-decoration: none;
+  /* padding: 12px 38px; */
+ padding: 9px 37px;
+  border: none;
+  border-radius: 10px;
+
+  background: #001654;
+  color: #ffffff !important;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-view-all:hover {
+  background: #0f2460;
+  color: #ffffff !important;
+  text-decoration: none;
+  /* transform: translateY(-2px); */
+}
+
+/* =====================================================
+   TRUST SECTION
+===================================================== */
+
+
+
+/* =====================================================
+   LARGE TABLETS
+===================================================== */
+
+@media (max-width: 1024px) {
+  .hero {
+    /* min-height: 60vh; */
+            min-height: 30vh;
+  }
+
+  .hero-title {
+    font-size: 38px;
+    line-height: 46px;
+  }
+
+  .scale-section {
+    padding: 10px 10px 50px;
+  }
+
+  .section-title {
+    font-size: 38px;
+    line-height: 46px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+  .hero {
+    /* padding-top: 44px;
+    min-height: 40vh;
+    background: linear-gradient(180deg, #1a2f5e 0%, #1e3a6e 54%, #f5f5f5 54%); */
+  }
+
+  .hero-curve {
+    width: 200%;
+    height: 55%;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 40px;
+
+    padding: 0 20px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 22px;
+
+    margin-bottom: 36px;
+  }
+
+  .hero-sub-divider {
+    display: none;
+  }
+
+  .scale-section {
+    padding: 10px 8px 40px;
+  }
+
+  .section-title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    line-height: 24px;
+
+    max-width: 500px;
+
+    margin-inline: auto;
+
+    margin-bottom: 32px;
+  }
+
+  .size-filters {
+    gap: 10px;
+  }
+
+  .size-btn {
+    flex: 1 1 calc(50% - 10px);
+
+    min-width: unset;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+  }
+
+  .product-info {
+    padding: 14px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 36px;
+    min-height: 20vh;
+
+    /* Remove the hard 50% split */
+    background: linear-gradient(
+      180deg,
+      #1a2f5e 0%,
+      #1e3a6e 100%
+    );
+  }
+
+  .hero-curve {
+    position: absolute;
+    left: 50%;
+    bottom: -30%;
+
+    transform: translateX(-50%);
+
+    /*
+     * Make the curve wider than the viewport so
+     * the visible edges stay smooth.
+     */
+    width: 185%;
+    height: 68%;
+
+    background: #f5f5f5;
+
+    /*
+     * Smooth large ellipse instead of a small oval.
+     */
+    border-radius: 50%;
+
+    z-index: 0;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 16px;
+  }
+
+  .hero-ifp-image {
+    bottom: 20px;
+  }
+
+  .scale-section {
+    padding: 8px 3px 40px;
+  }
+
+  .section-title {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 28px;
+  }
+
+  .size-filters {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .size-btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .product-card_ifp {
+    border-radius: 14px;
+  }
+
+  .product-name {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .product-spec {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .btn-view {
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  .btn-view-all {
+    width: 100%;
+    max-width: 280px;
+    min-height: 34px;
+  }
+}
+/* /* =====================================================
+   CONTACT SECTION SPACING
+   Keep trust section and ContactSection consistently spaced
+===================================================== */

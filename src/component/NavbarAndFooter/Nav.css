@@ -1,0 +1,481 @@
+/* =========================================
+   BASE STYLES & DESKTOP (Above 991px)
+   ========================================= */
+.navbar {
+  height: 80px;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.navbar .container {
+  max-width: 100%;
+  padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px);
+}
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-brand img {
+  height: 29px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar .nav-link {
+  font-weight: 400;
+  font-size: 15px;
+  color: #131313 !important;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease, font-weight 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  font-weight: 600;
+  color: #e41346 !important;
+}
+
+.navbar-nav {
+  gap: 38px;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.nav-btn {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar-nav:hover .nav-link:not(:hover) {
+  color: rgba(128, 128, 128, 0.5) !important;
+}
+
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.mega-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 98;
+}
+
+.mega-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mega-menu-content {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  max-height: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s ease 0.4s;
+}
+
+.mega-menu-content.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  max-height: 600px;
+  transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s ease 0s;
+}
+
+#navbarContent {
+  background: transparent;
+}
+
+.megamenu h5 {
+  font-size: 28px;
+  color: #131313;
+  font-weight: 600;
+}
+
+.menu-card-head {
+  width: clamp(120px, 13vw, 192px) !important;
+  height: clamp(162px, 16.5vw, 246px);
+  background: #ffffff;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card-head:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.menu-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-card img {
+  width: 100%;
+  height: clamp(100px, 11vw, 150px);
+  object-fit: cover;
+  display: block;
+  margin-inline: auto;
+  transition: transform 0.3s ease;
+}
+
+.small-image {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain;
+  margin: auto;
+  transition: transform 0.3s ease !important;
+}
+
+.menu-card-head:hover .small-image {
+  object-fit: contain;
+  transform: scale(2.2) !important;
+}
+
+.menu-card-head:hover img {
+  transform: scale(1.08);
+}
+
+.menu-card p {
+  font-size: clamp(11px, 0.85vw, 14px);
+  line-height: 1.5;
+  color: #4c4c4c;
+  margin-top: clamp(6px, 0.6vw, 10px);
+}
+
+.btn-submit {
+  background-color: #001654;
+  color: white;
+  padding: 0.5rem 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #001654ac;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Hide Mobile Elements on Desktop */
+.mobile-dropdown-icon, 
+.mobile-mega-menu, 
+.mobile-spacer { 
+  display: none; 
+}
+
+
+/* =========================================
+   1200px RESPONSIVE TWEAKS (Original)
+   ========================================= */
+@media (max-width: 1200px) {
+  .navbar .container {
+    /* padding-left: 40px !important;
+    padding-right: 40px !important; */
+
+  }
+  .navbar-nav {
+    gap: 30px;
+  }
+  .navbar-nav .nav-item {
+    margin-left: 0.7rem; 
+    margin-right: 0.7rem;
+  }
+  .mega-menu-content.show .row {
+    gap: 30px !important;
+  }
+  .menu-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu-card img {
+    width: 100%;
+    height: clamp(100px, 10vw, 150px);
+    object-fit: contain;
+    display: block;
+    margin-inline: auto;
+    transition: transform 0.3s ease;
+  }
+  .menu-card p {
+    font-size: clamp(10px, 0.9vw, 12px);
+    line-height: 1.5;
+    margin-top: 8px;
+    text-align: center;
+  }
+}
+
+
+/* =========================================
+   991px MOBILE LAYOUT (From Provided Image)
+   ========================================= */
+@media (max-width: 991px) {
+  
+  /* 1. Header Restructuring */
+  .navbar { height: 72px; padding: 0; }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Flex order: Toggler on Left, Logo Center, Spacer Right */
+  .navbar-toggler { order: 1; margin: 0; padding: 0; display: block; }
+  .navbar-brand { order: 2; margin: 0 auto; display: flex; justify-content: center; }
+  .navbar-logo { height: 26px; } 
+  .mobile-spacer { order: 3; width: 30px; display: block; } 
+
+  /* 2. Hide Desktop Hover Menus Entirely */
+  .desktop-mega { display: none !important; }
+
+  /* 3. Mobile Navigation Dropdown Container */
+  #navbarContent {
+    /* Height of the header the panel hangs below; overridden per breakpoint
+       so the open height below stays a single expression. */
+    --nav-offset: 72px;
+
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    /* padding: 0 20px 20px 20px; */
+        padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px);
+    border-top: 1px solid #eaeaea;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      overscroll-behavior: contain;
+
+  }
+
+  /*
+   * Slide the panel open and shut.
+   *
+   * Bootstrap's collapse plugin used to do this by measuring the panel and
+   * animating height from JavaScript. With the toggle driven by React state
+   * it is a plain CSS transition instead: the open height is a fixed
+   * expression, so nothing needs measuring, and the panel is absolutely
+   * positioned, so animating it cannot shift the page.
+   *
+   * Both ends of the transition are declared on `.collapse`-qualified
+   * selectors on purpose. Leaving the open height to the bare `#navbarContent`
+   * rule means the two ends come from different rules in different media
+   * queries, and the transition then has no end value to resolve against — the
+   * panel stays shut.
+   *
+   * `display` also has to be restated, because Bootstrap's
+   * `.collapse:not(.show) { display: none }` would make the height jump rather
+   * than animate.
+   */
+  #navbarContent.collapse {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    border-top-color: transparent;
+    box-shadow: none;
+    transition: height 0.35s ease;
+  }
+
+  #navbarContent.collapse.show {
+    height: calc(100vh - var(--nav-offset));
+    height: calc(100dvh - var(--nav-offset));
+    overflow-y: auto;
+    border-top-color: #eaeaea;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  /* 4. Menu Items Layout */
+  .navbar-nav { gap: 0; margin-top: 10px; }
+  .navbar-nav .nav-item { margin: 0; width: 100%; }
+  
+  .nav-link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+  
+  .navbar .nav-link {
+    width: auto;
+    text-align: left;
+    padding: 0 !important;
+    font-size: 18px; 
+    font-weight: 600;
+    color: #4a4a4a !important;
+    border-bottom: none; /* Reset original mobile border */
+  }
+
+  .navbar-nav:hover .nav-link:not(:hover) {
+    color: #4a4a4a !important; /* Prevent dimming on mobile */
+  }
+
+  /* Dropdown icon (Arrow) */
+  .mobile-dropdown-icon {
+    display: block;
+    color: #555;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-dropdown-icon.rotate {
+    transform: rotate(180deg);
+  }
+
+  /* 5. Mobile Accordion Content (The 2-column Grid) */
+  .mobile-mega-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+    overflow: hidden;
+  }
+  
+  .mobile-mega-menu.open {
+    grid-template-rows: 1fr;
+    padding-bottom: 15px; 
+  }
+
+  .mobile-product-grid {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding-top: 10px;
+  }
+
+  /* 6. Mobile Card Styling */
+  .mobile-product-card {
+    background: #efefef; 
+    border-radius: 12px;
+    padding: 12px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .mobile-product-card .img-wrapper {
+    width: 100%;
+    background: transparent;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .mobile-product-card img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain; 
+    mix-blend-mode: multiply; 
+    display: block;
+    margin-inline: auto;
+  }
+
+  .mobile-product-card p {
+    font-size: 12px;
+    color: #4c4c4c;
+    margin: 0;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+}
+
+
+/* =========================================
+   768px MOBILE TWEAKS
+   ========================================= */
+@media (max-width: 768px) {
+  .navbar { height: 68px; }
+  .nav-container { padding-left: 16px !important; padding-right: 16px !important; }
+  .navbar-brand img { height: 24px; }
+  
+  #navbarContent { 
+    top: 68px; 
+    /* padding: 0 16px 16px 16px;  */
+    --nav-offset: 68px;
+  }
+  
+  .navbar .nav-link { font-size: 16px; }
+  .megamenu h5 { font-size: 20px; }
+  .menu-card-head { border-radius: 14px; padding: 10px; }
+  .menu-card p { font-size: 11px; line-height: 20px; }
+}
+
+
+/* =========================================
+   480px MOBILE TWEAKS
+   ========================================= */
+@media (max-width: 480px) {
+  .navbar { height: 64px; }
+  .navbar-brand img { height: 22px; }
+  
+  #navbarContent { 
+    top: 64px; 
+    --nav-offset: 64px;
+  }
+  
+  .nav-link-wrapper { padding: 12px 0; }
+  .navbar .nav-link { font-size: 15px; }
+  
+  .menu-card-head { min-height: 135px; }
+  .menu-card img { width: 50px; }
+  .menu-card p { font-size: 12px; line-height: 18px; }
+  
+  .btn-submit { width: 100%; }
+}
+/*
+ * Respect a reduced-motion preference, matching how Bootstrap disables its own
+ * collapse transition.
+ */
+@media (max-width: 991px) and (prefers-reduced-motion: reduce) {
+  #navbarContent.collapse {
+    transition: none;
+  }
+}

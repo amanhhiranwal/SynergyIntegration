@@ -1,0 +1,834 @@
+.info-section {
+  position: relative;
+  margin: 4rem 2rem;
+  min-height: 200px;
+}
+
+.info-section-image {
+  width: 100%;
+  /* These images carry intrinsic width/height attributes so the browser can
+     reserve their box before decoding. Those attributes also act as
+     presentational hints, so height must be reset to auto here or the image
+     renders at its full intrinsic height instead of its aspect ratio. */
+  height: auto;
+  object-fit: contain;
+}
+
+.info-section .section-headings {
+  position: absolute;
+  z-index: 2;
+  width: -webkit-fill-available;
+  padding-top: 4rem;
+  margin-top: 0rem;
+}
+.meta {
+  display: none;
+}
+
+.btn-discover {
+  display: inline-block;
+  margin-top: 20px;
+  /* background-color: #ff6f61; */
+  background-color: #163e5a;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.dual-product-section {
+  margin: 2rem;
+}
+
+.product-card-head {
+  position: absolute;
+}
+
+.product-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* === Marker Lines + Labels === */
+.product-card {
+  position: relative;
+}
+
+/* Common marker styles */
+.marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Line style */
+.marker-line {
+  width: 0;
+  height: 2px;
+  background: #848484;
+  position: relative;
+  animation: drawLine 1s forwards;
+}
+
+/* Small circle at line start */
+.marker-line::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #848484;
+  border-radius: 50%;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+}
+
+/* Label */
+.marker-label {
+  font-size: 14px;
+  color: #6c6c6c;
+  margin: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeInLabel 0.5s 1s forwards;
+}
+
+/* === Marker Positions === */
+
+/* LEFT marker — vertical line + text at bottom */
+.display-marker-left {
+  top: 31%;
+  left: 10%;
+  flex-direction: column-reverse;
+}
+
+.display-marker-left .marker-line {
+  width: 2px;
+  height: 0;
+  transform-origin: bottom center;
+  animation: drawLineVertical 1s forwards;
+}
+
+/* TOP marker — vertical line + text below */
+.display-marker-top {
+  top: 30%;
+  left: 70%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+}
+
+.display-marker-top .marker-line {
+  width: 2px;
+  height: 0;
+  transform-origin: bottom center;
+  animation: drawLineVertical 1s forwards;
+}
+
+/* RIGHT marker — horizontal line + text on left */
+.display-marker-right {
+  bottom: 10%;
+  right: 200px;
+  flex-direction: row;
+}
+
+.display-marker-right .marker-line {
+  width: 0;
+  height: 2px;
+  transform-origin: left center;
+  animation: drawLine 1s forwards;
+}
+
+/* === Animations === */
+
+/* Horizontal line growing */
+@keyframes drawLine {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 80px;
+  }
+
+  /* final width */
+}
+
+/* Vertical line growing */
+@keyframes drawLineVertical {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 70px;
+  }
+
+  /* grows downward */
+}
+
+/* Fade in label */
+@keyframes fadeInLabel {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Optional: adjust markers on mobile */
+@media (max-width: 768px) {
+  .marker-left,
+  .marker-right {
+    display: none;
+    /* hide for small screens or reposition */
+  }
+
+  .marker-top {
+    top: -20px;
+  }
+}
+
+/* ===== Scoped for Dual Product Section ===== */
+.dual-product-section {
+  margin: 2rem;
+  position: relative;
+}
+
+.dual-product-section .product-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* === Marker Common === */
+.dual-product-section .dual-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Line */
+.dual-product-section .dual-marker-line {
+  background: #848484;
+  position: relative;
+}
+
+/* Small circle at line start */
+.dual-product-section .dual-marker-line::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #848484;
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* Label */
+.dual-product-section .dual-marker-label {
+  font-size: 14px;
+  color: #6c6c6c;
+  margin: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: dualFadeInLabel 0.5s 1s forwards;
+}
+
+/* === Vertical Marker === */
+.dual-product-section .dual-marker.vertical {
+  flex-direction: column-reverse;
+}
+
+.dual-product-section .dual-marker-left.vertical {
+  bottom: 19%;
+  right: 25%;
+}
+
+.dual-product-section .dual-marker-right.vertical {
+  bottom: 26%;
+  right: 27%;
+}
+
+.dual-product-section .dual-marker.vertical .dual-marker-line {
+  width: 2px;
+  height: 0;
+  transform-origin: bottom center;
+  animation: dualDrawLineVertical 1s forwards;
+}
+
+.dual-product-section .dual-marker.vertical .dual-marker-line::after {
+  /* bottom: -4px; */
+  left: -3px;
+}
+
+/* === Horizontal Marker === */
+.dual-product-section .dual-marker.horizontal {
+  flex-direction: row;
+}
+
+.dual-product-section .dual-marker-left.horizontal {
+  bottom: 40%;
+  left: 53%;
+}
+
+.dual-product-section .dual-marker-right.horizontal {
+  top: 45%;
+  left: 46%;
+}
+
+.dual-product-section .dual-marker.horizontal .dual-marker-line {
+  width: 0;
+  height: 2px;
+  transform-origin: left center;
+  animation: dualDrawLineHorizontal 1s forwards;
+}
+
+.dual-product-section .dual-marker.horizontal .dual-marker-line::after {
+  top: -3px;
+  right: -4px;
+}
+
+/* === Animations === */
+@keyframes dualDrawLineVertical {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 70px;
+  }
+}
+
+@keyframes dualDrawLineHorizontal {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 80px;
+  }
+}
+
+@keyframes dualFadeInLabel {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.navs-wrapper {
+  border: 3px solid #1212120d;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.tab-link {
+  position: relative;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #131313;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.tab-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.tab-link:not(.active)::before {
+  background: #4c4c4c;
+}
+
+.tab-link:not(.active):hover::before {
+  transform: scaleY(1);
+}
+
+.tab-link:not(.active):hover {
+  color: #fff;
+}
+
+/* Active animation (black fill) */
+.tab-link.active {
+  color: #fff;
+}
+
+.tab-link.active::before {
+  background: #111;
+  animation: fillActive 0.3s forwards;
+}
+
+@keyframes fillActive {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.features-slider-wrapper {
+  background: #f5f5f5;
+}
+
+.myFeatureSlider {
+  overflow: visible;
+  padding: 20px 0;
+}
+
+.myFeatureSlider-wrapper {
+  left: -5%;
+  height: fit-content;
+}
+
+.myFeatureSlider-swiper-slide {
+  flex-shrink: 0;
+  width: 70%;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 1;
+}
+
+.myFeatureSlider-swiper-slide-prev {
+  width: 10%;
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+.myFeatureSlider-swiper-slide-next {
+  width: 20%;
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #111;
+  background: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.panel-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 22px;
+}
+
+.text-content {
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.text-content h3 {
+  font-size: 40px;
+  font-weight: 400;
+  color: #131313;
+  margin-bottom: 15px;
+}
+
+.text-content p {
+  font-size: 18px;
+  color: #6c6c6c;
+}
+
+.image-content video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+}
+
+.btn-submit {
+  background-color: #001654;
+  /* Deep blue for Get in touch button */
+  color: white;
+  padding: 0.5rem 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #001654ac;
+  color: white;
+}
+
+.client-carousel {
+  /* padding-top: 5%;
+  padding-bottom: 5%; */
+}
+.montserrat {
+  padding-bottom: 1%;
+}
+.mobile-product-card-home{
+  min-height: 100px;
+}
+
+@media (max-width: 1023px) {
+  .mobile-product-card-home {
+    width: 100%;
+  }
+
+  .mobile-product-card-home .product-card {
+    width: 100%;
+  }
+
+  .section-headings h2 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+ 
+  .swiper-slide {
+    width: 80%;
+  }
+
+  .swiper-slide-prev {
+    width: 15%;
+  }
+
+  .swiper-slide-next {
+    width: 20%;
+  }
+   .section-headings h2 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+    .mobile-product-card-home-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 12%;
+    right: 30%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 27%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 15%;
+    right: 19%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 60%;
+    left: 46%;
+  }
+
+}
+@media (max-width: 768px) {
+    @keyframes dualDrawLineVertical {
+    0% {
+      height: 0;
+    }
+
+    100% {
+      height: 40px;
+    }
+    
+  }
+  @keyframes drawLine {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 10px;
+  }
+
+  /* final width */
+}
+@keyframes dualDrawLineHorizontal {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 30px;
+  }
+}
+.info-section, .dual-product-section, .dual-product-section {
+  /* margin: 1rem 0rem; */
+  /* margin-top: 0;
+  margin-bottom: 0; */
+  padding: 0 !important;
+   margin-left: clamp(16px, 5vw, 100px) !important;
+  margin-right: clamp(16px, 5vw, 100px);
+}
+    .mobile-product-card-home {
+      padding: 0;
+    }
+    .info-section{
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+  /* grows downward */
+  .myProductSlider {
+    height: 60vh;
+  }
+  .text-content h3 {
+    font-size: 28px;
+  }
+
+  .text-content p {
+    font-size: 16px;
+  }
+  .slide-subtitle {
+    font-size: 10px;
+  }
+
+
+    .panel-content {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .section-headings h2 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .swiper-slide,
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    width: 90%;
+  }
+  .slide-subtitle {
+    font-size: 13px;
+  }
+
+  .section-headings {
+    margin-top: 2rem;
+  }
+
+
+  .section-headings a {
+    margin-top: 1rem;
+    font-size: 14px;
+    padding: 0.5rem 2rem;
+  }
+
+  .info-section .section-headings {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .info-section .section-headings {
+    position: unset;
+  }
+
+  .info-section-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .product-card-head {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dual-product-section .product-card {
+    display: block;
+  }
+  .mobile-product-card-home .product-card {
+    width: 100%;
+    position: relative;
+    min-height: 300px;
+  }
+  .mobile-product-card-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f5f5f5;
+    /* padding: 0; */
+    border-radius: 12px;
+  }
+  .display-marker-top {
+    top: 43%;
+  }
+
+  .display-marker-left {
+    top: 45%;
+  }
+
+  .display-marker-right {
+    bottom: 5%;
+    right: 90px;
+  }
+
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 14%;
+    right: 30%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 27%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 19%;
+    right: 19%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 60%;
+    left: 46%;
+  }
+}
+@media (max-width: 480px) {
+    
+  .section-headings h2 {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+  .swiper-slide,
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    width: 90%;
+  }
+  .slide-subtitle {
+    font-size: 13px;
+  }
+
+  .section-headings {
+    margin-top: 2rem;
+  }
+
+
+  .section-headings a {
+    margin-top: 1rem;
+    font-size: 14px;
+    padding: 0.5rem 2rem;
+  }
+
+  .info-section .section-headings {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .info-section .section-headings {
+    position: unset;
+  }
+
+  .info-section-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .product-card-head {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dual-product-section .product-card {
+    display: block;
+  }
+  .mobile-product-card-home .product-card {
+    width: 100%;
+    position: relative;
+    min-height: 300px;
+  }
+  .mobile-product-card-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f5f5f5;
+    /* padding: 0; */
+    border-radius: 12px;
+  }
+  .display-marker-top {
+    top: 43%;
+  }
+
+  .display-marker-left {
+    top: 45%;
+  }
+
+  .display-marker-right {
+    bottom: 5%;
+    right: 90px;
+  }
+
+  .dual-product-section .dual-marker-left.vertical {
+    bottom: 12%;
+    right: 30%;
+  }
+
+  .dual-product-section .dual-marker-left.horizontal {
+    bottom: 27%;
+    left: 52%;
+  }
+
+  .dual-product-section .dual-marker-right.vertical {
+    bottom: 15%;
+    right: 19%;
+  }
+
+  .dual-product-section .dual-marker-right.horizontal {
+    top: 60%;
+    left: 46%;
+  }
+}

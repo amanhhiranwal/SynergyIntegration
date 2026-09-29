@@ -1,0 +1,167 @@
+/* --- DESKTOP STYLES (UNCHANGED) --- */
+.product-slider-wrapper {
+  background-color: #ffffff;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.myProductSlider {
+  width: 100%;
+  height: 70vh;
+}
+
+.myProductSlider .swiper-wrapper {
+  align-items: center;
+}
+
+.myProductSlider .swiper-slide {
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); */
+  transition: all 0.3s ease;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.slide-text-content {
+  opacity: 0;
+  max-width: 80%;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.myProductSlider .swiper-slide:not(.swiper-slide-active) .slide-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.5)
+  );
+}
+
+.slide-title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.slide-subtitle {
+  font-size: 16px;
+  color: rgba(189, 189, 189, 1);
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Tablets / iPad Landscape (<= 1024px) */
+@media (max-width: 1024px) {
+  .myProductSlider {
+    height: 50vh;
+    min-height: 390px;
+  }
+
+  .myProductSlider .swiper-slide {
+    border-radius: 20px;
+  }
+
+  .slide-overlay {
+    padding-bottom: 35px;
+  }
+
+  .slide-title {
+    font-size: 32px;
+  }
+
+  .slide-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* Tablet Portrait / Large Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .product-slider-wrapper {
+    padding: 15px 0;
+  }
+
+  .myProductSlider {
+    height: 42vh;
+    min-height: 300px;
+  }
+
+  .myProductSlider .swiper-slide {
+    border-radius: 16px;
+  }
+
+  .slide-text-content {
+    max-width: 90%;
+  }
+
+  .slide-overlay {
+    padding-bottom: 25px;
+  }
+
+  .slide-title {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+
+  .slide-subtitle {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+}
+
+/* Small Mobile Phones (<= 480px) */
+@media (max-width: 480px) {
+  .product-slider-wrapper {
+    padding: 10px 0;
+  }
+
+  .myProductSlider {
+    height: 35vh;
+    min-height: 240px;
+  }
+
+  .myProductSlider .swiper-slide {
+    border-radius: 12px;
+  }
+
+  .slide-text-content {
+    max-width: 95%;
+  }
+
+  .slide-overlay {
+    padding-bottom: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .slide-title {
+    font-size: 22px;
+    margin-bottom: 0.2rem;
+  }
+
+  .slide-subtitle {
+    font-size: 13px;
+  }
+}

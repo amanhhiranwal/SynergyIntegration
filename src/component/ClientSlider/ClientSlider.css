@@ -1,0 +1,49 @@
+.partner-section {
+  padding: 3rem 0rem 5rem 0rem;
+}
+
+.partner-row {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.partner-label {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #222;
+  margin-right: 25px;
+  min-width: 220px;
+  font-size: 1.1rem;
+  background-color: #f5f5f5;
+  padding: 1.5rem 1rem;
+}
+
+.swiper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.contact-swiper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto !important;
+}
+
+.contact-swiper img {
+  height: 40px;
+  width: auto;
+  filter: grayscale(30%);
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.clients-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.collab-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}

@@ -1,0 +1,168 @@
+.specs-sec {
+  margin: 124px 104px;
+  font-family: "Inter", sans-serif;
+}
+
+.specs-col-label {
+  flex: 0 0 200px;
+  min-width: 0;
+}
+
+.specs-col-value {
+  flex: 1;
+  min-width: 0;
+}
+
+.specs-header {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.specs-header > .specs-col-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--Colors-Secondary-300, rgba(0, 22, 84, 1));
+  padding-bottom: 4px;
+}
+
+.specs-col-size {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.specs-col-size:hover {
+  opacity: 0.65;
+}
+
+.specs-thumb {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.specs-size-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--Colors-Secondary-300, rgba(0, 22, 84, 1));
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  padding: 8px;
+  transition: color 0.2s ease;
+}
+
+.specs-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.specs-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.specs-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.specs-row.has-divider {
+}
+
+.specs-label-cell {
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--Colors-Neutral-300, #6c6c6c);
+  white-space: nowrap;
+}
+
+.specs-col-value {
+  text-wrap: wrap;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(30, 30, 30, 1);
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.specs-col-value.is-active {
+  color: rgba(0, 22, 84, 1);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .specs-sec {
+    margin: 100px 40px;
+  }
+  .specs-col-label {
+    flex: 0 0 160px;
+  }
+  .specs-thumb {
+    width: 48px;
+  }
+  .specs-size-label {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .specs-sec {
+    margin: 80px 0;
+    overflow-x: auto;
+    padding: 0 20px;
+  }
+  .specs-header,
+  .specs-card,
+  .specs-row {
+    min-width: 580px;
+  }
+  .specs-col-label {
+    flex: 0 0 120px;
+  }
+  .specs-label-cell,
+  .specs-col-value {
+    font-size: 13px;
+  }
+  .specs-thumb {
+    width: 38px;
+  }
+  .specs-size-label {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .specs-col-label {
+    flex: 0 0 100px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .specs-col-value {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

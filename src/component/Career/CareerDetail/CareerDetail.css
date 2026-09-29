@@ -1,0 +1,377 @@
+
+.career-hero-section {
+      background-color: #f5f5f5;
+  --main-heading-col: #f5f5f5;
+  --main-desc-col: #bdbdbd;
+  --big-heading-size-lg: 44px;
+  --big-heading-size-md: 36px;
+  --big-heading-size-sm: 28px;
+  --big-heading-fw: 400;
+  --big-desc-fw: 500;
+  /* font-family: "Inter", "Segoe UI", sans-serif; */
+    font-family: "Inter", sans-serif;
+
+  padding: 0 !important;
+  position: relative;
+  width: 100%;
+  min-height: 390px;
+  aspect-ratio: 1440 / 419;
+  overflow: hidden;
+}
+
+.career-hero-section img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .career-hero-overlay-details {
+  position: absolute;
+  top: 35%;
+  left:35%;
+  transform: translateX(-50%);
+  text-align: start;
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+  padding: 0 20px;
+} */
+.career-hero-overlay-details {
+  position: absolute;
+  top: 35%;
+  left: 6%;
+  transform: none;
+  text-align: left;
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.career-hero-title {
+  font-size: var(--big-heading-size-lg);
+  font-weight: 400;
+  color: var(--main-heading-col);
+  margin: 0 0 3px 0;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.career-hero-subtitle {
+  font-size: clamp(0.6rem, 1.6vw, 1rem);
+  font-weight: 500;
+  color: var(--main-desc-col);
+  margin: 0;
+  letter-spacing: 0.8px;
+}
+
+
+/* ============ Tokens ============ */
+.cd-page {
+  /* --navy: #14205a; */
+  --navy:#001654;
+  /* --navy-deep: #131d4f; */
+    --navy-deep: #001654;
+
+  --text: #475569;
+  --text-strong: #001654;
+  --muted: #64748b;
+  --label: #6b7280;
+  --border: #e2e8f0;
+  --border-soft: #e5e7eb;
+  --bg: #f4f4f4;
+  --white: #ffffff;
+
+  /* min-height: 100vh; */
+  /* background: var(--bg); */
+  /* padding: 40px 16px 80px; */
+  padding: 140px;
+
+    padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ Header ============ */
+.cd-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.cd-title {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+
+.cd-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ============ Shell ============ */
+.cd-shell {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+}
+
+/* ============ Back link ============ */
+.cd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.cd-back:hover {
+  color: var(--navy);
+}
+.cd-back svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============ Tabs ============ */
+.cd-tabs {
+  display: flex;
+  width: fit-content;
+}
+
+.cd-tab {
+  min-width: 158px;
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background: var(--white);
+  color: var(--text-strong);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 0; /* square by default — overridden below */
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cd-tab:first-child {
+  border-radius: 8px 0 0 0; /* top-left + bottom-left */
+}
+
+.cd-tab:last-child {
+  border-radius: 0 8px 0 0; /* top-right + bottom-right */
+}
+
+.cd-tab + .cd-tab {
+  margin-left: -1px; /* keep this — avoids the double border at the seam */
+}
+
+.cd-tab--active {
+  background: var(--navy-deep);
+  color: var(--white);
+  border-color: var(--navy-deep);
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ Card ============ */
+.cd-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 0 12px 12px 12px;
+  padding: 36px 32px 40px;
+}
+
+/* ============ Job heading ============ */
+.cd-job-title {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: var(--navy);
+  margin: 0 0 20px;
+}
+
+/* ============ Meta pills ============ */
+.cd-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cd-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: var(--text-strong);
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.cd-pill svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.cd-jobid {
+  font-size: 14px;
+  color: var(--label);
+  margin: 0 0 32px;
+}
+
+/* ============ Section ============ */
+.cd-section {
+  margin-bottom: 30px;
+}
+
+.cd-section-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-strong);
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.cd-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ============ Lists ============ */
+.cd-list {
+  margin: 0;
+  padding-left: 22px;
+  list-style: disc;
+}
+.cd-list li {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.cd-list li::marker {
+  color: var(--muted);
+}
+
+/* ============ Eligibility ============ */
+.cd-eligibility {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cd-eligibility-row {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.cd-eligibility-label {
+  color: var(--label);
+}
+.cd-eligibility-value {
+  color: var(--text-strong);
+}
+
+/* ============ Skill chips ============ */
+.cd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cd-chip {
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--text-strong);
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ============ Apply button ============ */
+.cd-apply {
+  margin-top: 34px;
+  padding: 13px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--navy-deep);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.cd-apply:hover {
+  background: #0f1740;
+}
+.cd-apply:active {
+  transform: translateY(1px);
+}
+
+/* ============ Empty / form tab ============ */
+.cd-placeholder {
+  padding: 60px 0;
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+@media (max-width: 1023px){
+  .career-hero-section{
+    aspect-ratio: 1/1;
+
+  }
+  
+  .career-hero-overlay-details {
+    left: 50%;
+    top: 19px;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 768px) {
+  .cd-page {
+    padding: 28px 12px 56px;
+  }
+  .cd-title {
+    font-size: 30px;
+  }
+  .cd-job-title {
+    font-size: 24px;
+  }
+  .cd-card {
+    padding: 24px 18px 30px;
+    border-radius: 0 12px 12px 12px;
+  }
+  .cd-tab {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .cd-tabs {
+    width: 100%;
+  }
+  .cd-apply {
+    width: 100%;
+  }
+}

@@ -1,0 +1,253 @@
+/* ================= ApplicationForm ================= */
+.af-wrap {
+  --af-primary: #001654; /* navy — match your brand / active tab color */
+  --af-primary-hover: #1b2c6e;
+  --af-border: #d7dbe4;
+  --af-text: #001654;
+  --af-muted: #6b7280;
+  --af-placeholder: #9aa1ad;
+  --af-error: #d92d20;
+  --af-bg-soft: #f8f9fb;
+
+  width: 100%;
+  /* font-family: inherit; */
+    font-family: "Inter", sans-serif;
+
+}
+
+.af-header {
+  margin-bottom: 28px;
+}
+
+.af-title {
+  margin: 0 0 8px;
+  color: var(--af-primary);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.af-subtitle {
+  margin: 0;
+  color: var(--af-muted);
+  font-size: 14px;
+}
+
+.af-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- Fields ---------- */
+.af-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.af-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  /* font-family: inherit; */
+    font-family: "Inter", sans-serif;
+
+  color: var(--af-text);
+  background: #fff;
+  border: 1px solid var(--af-border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.af-input::placeholder {
+  color: var(--af-placeholder);
+}
+
+.af-input:focus {
+  border-color: var(--af-primary);
+  box-shadow: 0 0 0 3px rgba(16, 31, 84, 0.12);
+}
+
+.af-field--invalid .af-input {
+  border-color: var(--af-error);
+}
+
+.af-error {
+  color: var(--af-error);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.af-error--form {
+  margin: 0;
+}
+
+/* ---------- Resume dropzone ---------- */
+.af-file-input {
+  display: none;
+}
+
+.af-dropzone {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 170px;
+  padding: 20px;
+  text-align: center;
+  color: var(--af-muted);
+  background: var(--af-bg-soft);
+  border: 2px dashed #c6ccd8;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.af-dropzone:hover,
+.af-dropzone--drag {
+  border-color: var(--af-primary);
+  background: #f1f3f9;
+}
+
+.af-dropzone-label {
+  font-size: 15px;
+}
+
+.af-dropzone-hint {
+  font-size: 12.5px;
+  color: var(--af-placeholder);
+}
+
+/* ---------- Selected file chip ---------- */
+.af-file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--af-border);
+  border-radius: 10px;
+}
+
+.af-file svg {
+  flex-shrink: 0;
+  color: var(--af-muted);
+}
+
+.af-file-name {
+  flex: 1;
+  overflow: hidden;
+  color: var(--af-text);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.af-file-size {
+  flex-shrink: 0;
+  color: var(--af-muted);
+  font-size: 13px;
+}
+
+.af-file-remove {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--af-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.af-file-remove:hover {
+  background: #f1f3f9;
+  color: var(--af-error);
+}
+
+/* ---------- Submit button ---------- */
+.af-submit {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 8px;
+  background: var(--af-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  /* font-family: inherit; */
+    font-family: "Inter", sans-serif;
+
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.af-submit:hover:not(:disabled) {
+  background: var(--af-primary-hover);
+}
+
+.af-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.af-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Success state ---------- */
+.af-success {
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.af-success .af-title {
+  margin-bottom: 10px;
+}
+
+.af-success .af-subtitle {
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.af-success .af-submit {
+  margin-top: 24px;
+}
+
+.af-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #e6f4ea;
+  color: #1e7e3e;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .af-title {
+    font-size: 24px;
+  }
+
+  .af-input {
+    padding: 12px 14px;
+  }
+
+  .af-submit {
+    width: 100%;
+  }
+}

@@ -1,0 +1,955 @@
+.ksd-section {
+  --tab-bg: #0016541a;
+  display: flex;
+  gap: var(--ksd-gap);
+  padding: var(--bv-pad-y) var(--bv-pad-x);
+  width: 100%;
+  box-sizing: border-box;
+  --ksd-gap: clamp(32px, 5vw, 150px);
+  --bv-pad-x: clamp(16px, 5vw, 100px);
+  --bv-pad-y: clamp(40px, 6vw, 80px);
+  --bv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bv-navy: #1b2a63;
+  --bv-displace: 1;
+  --screen-top: 6%;
+  --screen-right: 6%;
+  --screen-bottom: 6%;
+  --screen-left: 6%;
+}
+
+.ksd-section * {
+  box-sizing: border-box;
+}
+
+.ksd-left {
+  flex: 350px 1;
+  min-width: 350px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.ksd-title {
+  margin: 0 0 clamp(10px, 1.6vw, 16px);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 400;
+  color: #001655;
+}
+
+.ksd-subtitle {
+  margin: 0 0 clamp(20px, 3vw, 32px);
+  color: #4c4c4c;
+  line-height: 1.6;
+  font-weight: 500;
+  font-size: clamp(13px, 1.4vw, 15px);
+}
+
+.ksd-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ksd-accordion-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #e3e3e8;
+  background: var(--tab-bg);
+  border-radius: 10px;
+  padding: clamp(14px, 1.8vw, 18px) clamp(16px, 2vw, 20px);
+  min-height: 44px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  overflow: hidden;
+  transition:
+    background-color 0.5s var(--ksd-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    border-color 0.5s var(--ksd-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    color 0.5s var(--ksd-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.ksd-accordion-item:focus-visible {
+  outline: 2px solid #1b2a63;
+  outline-offset: 2px;
+}
+
+.ksd-accordion-item.active {
+  background: #1b2a63;
+  border-color: #1b2a63;
+  color: #fff;
+}
+
+.ksd-accordion-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 14px);
+}
+
+.ksd-icon {
+  width: clamp(18px, 2vw, 22px);
+  height: clamp(18px, 2vw, 22px);
+  flex-shrink: 0;
+}
+
+.ksd-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: filter 0.25s ease;
+}
+
+.ksd-accordion-item.active .ksd-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.ksd-accordion-title {
+  font-size: clamp(13px, 1.4vw, 15px);
+  font-weight: 500;
+}
+
+.ksd-accordion-body-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s
+    var(--ksd-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.ksd-accordion-item.active .ksd-accordion-body-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.ksd-accordion-body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ksd-accordion-body p {
+  margin: 12px 0 0;
+  font-size: clamp(12.5px, 1.3vw, 14px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ksd-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ksd-device-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ksd-device {
+  position: relative;
+  width: clamp(260px, 32vw, 450px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  animation-duration: 0.9s;
+  animation-timing-function: var(--bv-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  animation-fill-mode: both;
+  z-index: 2;
+}
+
+.ksd-device-screen {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  top: -62%;
+  right: 16%;
+  bottom: 10%;
+  left: 21%;
+}
+
+.ksd-device.anim-backward {
+  animation-name: none;
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ksd-device.anim-zoom-out {
+  animation-name: ksd-zoom-out;
+}
+
+@keyframes ksd-zoom-out {
+  from {
+    opacity: 0;
+    transform: scale(1.9) translate(4%, 44%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(0.98) translateY(25%);
+  }
+}
+
+.ksd-device.anim-zoom {
+  animation-name: ksd-zoom-down;
+}
+
+@keyframes ksd-zoom-down {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(20%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.4) translateY(25%);
+  }
+}
+
+.ksd-device.anim-zoom-shift {
+  animation-name: ksd-zoom-shift;
+}
+
+@keyframes ksd-zoom-shift {
+  from {
+    opacity: 0;
+    transform: scale(1.4) translateY(25%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.6) translate(1%, 36%);
+  }
+}
+
+.ksd-device-popup {
+  position: absolute;
+  top: -7%;
+  left: 14%;
+  width: 34%;
+  height: auto;
+  z-index: 3;
+  transform-origin: top left;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.75);
+  animation: ksd-popup-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+@keyframes ksd-popup-in {
+  from {
+    opacity: 0;
+    transform: scale(0.75) translate(50%, 50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(0.89) translateY(-40%);
+  }
+}
+
+.ksd-device-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(1.03);
+  transition:
+    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.ksd-device-image.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ksd-device-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ksd-right-text {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  max-width: 42%;
+  padding-left: 4%;
+  z-index: 3;
+  opacity: 0;
+}
+
+.ksd-right-text.visible {
+  animation: ksd-text-fadein 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ksd-right-text.hiding {
+  animation: ksd-text-fadeout 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ksd-text-fadein {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.18;
+  }
+  55% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ksd-text-fadeout {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.ksd-right-text h3 {
+  margin: 0;
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 600;
+  color: #001654a6;
+}
+
+.ksd-device.anim-widen-right {
+  animation-name: ksd-widen-right;
+}
+
+@keyframes ksd-widen-right {
+  from {
+    opacity: 0;
+    transform: scale(1.6) translate(1%, 36%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.9) translate(4%, 44%);
+  }
+}
+
+.ksd-signal-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.ksd-signal {
+  position: absolute;
+  top: 72%;
+  left: 52%;
+  width: clamp(260px, 38vw, 520px);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+@keyframes ksd-signal-1 {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ksd-signal-2 {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ksd-signal-3 {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ksd-signal-frame-1 {
+  animation: ksd-signal-1 2.1s var(--bv-ease) infinite;
+  animation-delay: 0.3s;
+}
+
+.ksd-signal-frame-2 {
+  animation: ksd-signal-2 2.1s var(--bv-ease) infinite;
+  animation-delay: 0.3s;
+}
+
+.ksd-signal-frame-3 {
+  animation: ksd-signal-3 2.1s var(--bv-ease) infinite;
+  animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksd-signal {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@keyframes ksd-signal-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  3% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(0.98);
+    filter: drop-shadow(0 0 8px rgba(0, 22, 85, 0.35));
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(0, 22, 85, 0.45));
+  }
+  34% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+  40% {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksd-signal .ring {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.ksd-moving-circle {
+  position: absolute;
+  top: 5%;
+  left: 22%;
+  width: 62%;
+  height: 42%;
+  z-index: 4;
+  pointer-events: none;
+  transform: perspective(800px) rotateX(50deg);
+}
+
+.ksd-touch-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ksd-touch-point {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ksd-touch-appear 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ksd-touch-appear {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.ksd-touch-point .core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #c9b6ff 45%,
+    rgba(201, 182, 255, 0) 75%
+  );
+  box-shadow: 0 0 10px 3px rgba(201, 182, 255, 0.8);
+  animation: ksd-core-breathe 1.6s ease-in-out forwards;
+}
+
+@keyframes ksd-core-breathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+}
+
+.ksd-touch-point .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 182, 255, 0.75);
+  animation: ksd-ring-expand 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ksd-ring-expand {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.ksd-touch-point .ring2 {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 182, 255, 0.4);
+  animation: ksd-ring-expand 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksd-touch-point,
+  .ksd-touch-point .ring,
+  .ksd-touch-point .ring2,
+  .ksd-touch-point .core {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .ksd-left {
+    min-width: 0;
+    width: 100% !important;
+    flex: 1 !important;
+    max-width: 100%;
+  }
+  .ksd-section {
+    flex-direction: column;
+      gap: 3px;
+  }
+  /* ── bottom nav replaces the accordion on tab/mobile ── */
+  .ksd-accordion {
+    display: none;
+  }
+  .ksd-device-viewport {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+  .ksd-title,
+  .ksd-subtitle {
+    text-align: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .ksd-left {
+    max-width: 100%;
+  }
+  .ksd-accordion {
+    gap: 10px;
+  }
+  .ksd-device {
+    width: clamp(220px, 55vw, 380px);
+  }
+  .ksd-signal {
+    width: clamp(220px, 50vw, 400px);
+  }
+}
+
+@media (max-width: 560px) {
+  .ksd-accordion-item {
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ksd-title {
+    margin-bottom: 8px;
+  }
+  .ksd-subtitle {
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+  .ksd-accordion {
+    gap: 8px;
+  }
+  .ksd-accordion-item {
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+  .ksd-accordion-body p {
+    margin-top: 8px;
+  }
+  .ksd-device {
+    width: clamp(180px, 62vw, 300px);
+  }
+  .ksd-signal {
+    width: clamp(180px, 58vw, 320px);
+  }
+}
+
+@media (max-width: 380px) {
+  .ksd-device {
+    width: clamp(160px, 58vw, 240px);
+  }
+  .ksd-signal {
+    width: clamp(160px, 54vw, 260px);
+  }
+  .ksd-right-text h3 {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+  .ksd-touch-point {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .ksd-title {
+    font-size: 22px;
+  }
+  .ksd-device {
+    width: clamp(140px, 56vw, 200px);
+  }
+  .ksd-signal {
+    width: clamp(140px, 52vw, 220px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksd-accordion-item,
+  .ksd-accordion-body-wrapper {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Bottom navigation tabs (tablet & mobile, ≤ 900px)
+   Desktop keeps the accordion; this is display:none until 900px.
+
+   Updated behavior:
+   - Closed loop: first/last tab shows a wrap-around arrow instead of
+     a dead greyed-out ghost arrow.
+   - Prev/next arrows sit fully INSIDE their card (no more straddling
+     the card edge).
+   - Arrows are bottom-anchored on the card, not vertically centered.
+   - The whole nav strip is full-bleed to the true screen edge, since
+     it inherits .ksd-section's horizontal padding by default.
+   ══════════════════════════════════════════════════════════════════ */
+.ksd-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .ksd-bottom-nav {
+    --ksd-peek: 54px; /* grey zone each side where wrap arrows live */
+    --ksd-nav-gap: 16px; /* MUST match KSD_NAV_GAP in KioskSection.jsx */
+    --ksd-arrow-size: 46px;
+
+    display: block;
+    position: relative;
+    width: calc(100% + 2 * var(--bv-pad-x));
+    margin-left: calc(-1 * var(--bv-pad-x));
+    margin-right: calc(-1 * var(--bv-pad-x));
+    margin-top: clamp(4px, 2vw, 16px);
+    padding: 4px var(--ksd-peek) 8px;
+    overflow: hidden; /* clips the off-screen cards → only wrap arrows peek */
+    box-sizing: border-box;
+  }
+
+  .ksd-nav-track {
+    display: flex;
+    gap: var(--ksd-nav-gap);
+    align-items: center; /* collapsed cards stay centered vs the active card */
+  }
+
+  /* ── Card ── */
+  .ksd-nav-card {
+    position: relative;
+    flex: 0 0 100%; /* 100% of the padded content box → neighbours sit off-screen */
+    background: #1b2a63;
+    color: #fff;
+    border-radius: clamp(18px, 5vw, 26px);
+    padding: clamp(18px, 4.5vw, 26px) clamp(20px, 5.5vw, 30px);
+    /* extra bottom padding so bottom-anchored arrows never overlap body text */
+    padding-bottom: calc(var(--ksd-arrow-size) + clamp(18px, 4.5vw, 26px));
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ksd-nav-card.active {
+    cursor: default;
+  }
+
+  /* Hide inner content of off-screen cards so only a clean edge peeks */
+  .ksd-nav-card-content {
+    transition: opacity 0.35s ease;
+  }
+
+  .ksd-nav-card:not(.active) .ksd-nav-card-content {
+    opacity: 0;
+  }
+
+  .ksd-nav-card-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 14px);
+  }
+
+  .ksd-nav-card-header .ksd-icon img {
+    filter: brightness(0) invert(1);
+  }
+
+  .ksd-nav-card-title {
+    font-size: clamp(14px, 3.8vw, 16px);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  /* Collapsed by default — expands only on the active tab */
+  .ksd-nav-card-body-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ksd-nav-card.active .ksd-nav-card-body-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  .ksd-nav-card-body {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .ksd-nav-card-body p {
+    margin: 12px 0 0;
+    font-size: clamp(12.5px, 3.5vw, 14px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* ── Arrows: every tab owns two; hidden by default.
+     Bottom-anchored and fully inside the card (no negative offsets). ── */
+  .ksd-nav-arrow {
+    position: absolute;
+    bottom: clamp(10px, 3vw, 16px);
+    top: auto;
+    transform: none;
+    width: var(--ksd-arrow-size);
+    height: var(--ksd-arrow-size);
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #1b2a63;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0, 13, 51, 0.28);
+    transition:
+      opacity 0.3s ease,
+      background-color 0.3s ease,
+      transform 0.2s ease;
+  }
+
+  .ksd-nav-arrow svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  /* Active tab: both arrows vanish (base state above, card expands).      */
+  /* Inactive tab: exactly ONE side arrow becomes visible, sitting fully   */
+  /* inside its own card near that card's edge.                           */
+
+  /* Previous tab peeks from the LEFT edge → show its ‹ inside its right side */
+  .ksd-nav-card.is-before > .ksd-nav-arrow-prev {
+    right: clamp(8px, 3vw, 14px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Next tab peeks from the RIGHT edge → show its › inside its left side */
+  .ksd-nav-card.is-after > .ksd-nav-arrow-next {
+    left: clamp(8px, 3vw, 14px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ksd-nav-arrow:active {
+    transform: scale(0.92);
+  }
+
+  .ksd-nav-arrow:focus-visible {
+    outline: 2px solid #1b2a63;
+    outline-offset: 2px;
+  }
+
+  /* ── Closed-loop wrap arrows (replace the old greyed-out ghost arrows).
+     Sit in the peek gutter, touching the screen edge. ── */
+  .ksd-nav-arrow-loop {
+    position: absolute;
+    bottom: clamp(10px, 3vw, 16px);
+    width: var(--ksd-arrow-size);
+    height: var(--ksd-arrow-size);
+    border: none;
+    border-radius: 50%;
+    background: #1b2a63;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 4;
+    box-shadow: 0 6px 18px rgba(0, 13, 51, 0.28);
+    transition:
+      background-color 0.3s ease,
+      transform 0.2s ease;
+  }
+
+  .ksd-nav-arrow-loop svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .ksd-nav-arrow-loop-prev {
+    left: max(4px, calc((var(--ksd-peek) - var(--ksd-arrow-size)) / 2));
+  }
+
+  .ksd-nav-arrow-loop-next {
+    right: max(4px, calc((var(--ksd-peek) - var(--ksd-arrow-size)) / 2));
+  }
+
+  .ksd-nav-arrow-loop:active {
+    transform: scale(0.92);
+  }
+
+  .ksd-nav-arrow-loop:focus-visible {
+    outline: 2px solid #1b2a63;
+    outline-offset: 2px;
+  }
+}
+
+/* Compact phones: slightly smaller peek zone + arrows */
+@media (max-width: 480px) {
+  .ksd-bottom-nav {
+    --ksd-peek: 46px;
+    --ksd-arrow-size: 40px;
+  }
+
+  .ksd-nav-card.is-before > .ksd-nav-arrow-prev {
+    right: clamp(6px, 3vw, 10px);
+  }
+
+  .ksd-nav-card.is-after > .ksd-nav-arrow-next {
+    left: clamp(6px, 3vw, 10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ksd-nav-card,
+  .ksd-nav-arrow,
+  .ksd-nav-arrow-loop,
+  .ksd-nav-card-body-wrapper,
+  .ksd-nav-card-content {
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width: 680px) {
+  .ksd-right-text[data-text-index="1"] {
+    transform: translateY(-90px);
+  }
+    .ksd-right-text[data-text-index="2"] {
+    transform: translateX(-20px);
+  }
+    .ksd-right-text[data-text-index="3"] {
+    transform: translateX(-20px);
+  }
+}

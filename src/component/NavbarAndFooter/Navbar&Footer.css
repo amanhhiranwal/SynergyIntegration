@@ -1,0 +1,636 @@
+/* --------------------------------------------------------------------------
+   Footer layout
+   -------------------------------------------------------------------------- */
+
+.footer {
+  background: transparent !important;
+  margin-top: 140px;
+}
+
+.footer,
+.footer a,
+.footer p,
+.footer span {
+  color: inherit;
+}
+
+.footer-section {
+  /* margin-top: clamp(80px, 8vw, 100px) !important; */
+  margin-left: clamp(16px, 5vw, 100px) !important;
+  margin-right: clamp(16px, 5vw, 100px) !important;
+  background: transparent !important;
+  color: #000;
+}
+
+.footer-bottom {
+  padding-left: clamp(16px, 5vw, 100px) !important;
+  padding-right: clamp(16px, 5vw, 100px);
+  background-color: #e9e9e9;
+}
+
+.footer-heading h2 {
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.3;
+  font-weight: 600;
+  color: #131313;
+  /* font-family: "Montserrat", sans-serif; */
+    font-family: "Inter", sans-serif;
+
+  width: min(100%, 590px);
+  max-width: 100%;
+}
+
+/* Main row: Company info on left, Links group pushed to far right */
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(2rem, 4vw, 3.75rem);
+  width: 100%;
+}
+
+.footer-grid > * {
+  min-width: 0;
+}
+
+.footer-grid .company-info {
+  flex: 1 1 auto;
+  max-width: 560px;
+}
+
+.company-info div {
+  width: min(100%, 90%);
+}
+
+/* Quick links + Products: tightly paired & aligned flush to right end */
+.ft-column-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* gap: clamp(2rem, 4vw, 4rem);  */
+    gap:6rem; 
+
+  /* Space between Quick Links and Products */
+  margin-left: auto;           /* Pushes entire group to far-right edge */
+  flex: 0 0 auto;
+}
+
+.top-footer,
+.middle-footer {
+  margin-bottom: clamp(3rem, 6vw, 6.25rem);
+  justify-content: space-between;
+}
+
+/* The footer's column headings are <h2>. They were <h6>, which skipped three
+   levels after the page's <h2> content headings — and on pages whose only
+   heading is the <h1> (listing pages), even <h3> skipped a level. Scoped to
+   .footer-grid so the large .footer-heading h2 keeps its own size. */
+.footer-grid h2,
+.footer li a {
+  font-size: 16px;
+}
+
+.footer ul li a:hover {
+  font-weight: 600;
+  color: #e41346 !important;
+}
+
+.footer-email,
+.footer-socials-heading {
+  font-size: 14px;
+}
+
+/* contact form */
+.business-mail a {
+  color: #2563eb !important;
+}
+
+.business-mail a:hover {
+  text-decoration: underline !important;
+}
+
+/* --------------------------------------------------------------------------
+   Form controls
+   -------------------------------------------------------------------------- */
+
+.form-control-custom {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: #1f2937;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #c0c0c0;
+  border-radius: 0;
+  transition: border-color 0.15s ease-in-out;
+  height: auto;
+}
+
+.form-control-custom:focus {
+  color: #1f2937;
+  background-color: transparent;
+  border-color: #4b5563;
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-control-custom::placeholder {
+  color: #343131;
+  opacity: 1;
+}
+
+textarea.form-control-custom {
+  min-height: 50px;
+  resize: vertical;
+}
+
+.form-label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #4b5563;
+  display: block;
+  text-align: left;
+  padding-left: 0.25rem;
+}
+
+button.btn-verify-custom {
+  background-color: #4c4c4c;
+  color: white;
+  padding: 0 3rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  height: 40px;
+  border-radius: 0.5rem;
+}
+
+button.btn-verify-custom:hover {
+  background-color: #000000;
+  color: white;
+}
+
+a.btn.btn-submit,
+button.btn.btn-submit {
+  background-color: #001654 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.btn.btn-submit {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+a.btn.btn-submit:hover,
+button.btn.btn-submit:hover {
+  background-color: #001654ac !important;
+  color: #ffffff !important;
+}
+
+.section-headings {
+  margin-top: 1rem;
+}
+
+ .contact-text .section-headings h2 {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.section-headings p {
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 500;
+  line-height: 1.2;
+  /* These subtitles sit on the #efefef section background, not white, so the
+     old #848484 came to 3.32:1 — under the 4.5:1 WCAG AA wants for body text.
+     #6c6c6c clears it on both backgrounds: 4.57:1 on #efefef, 5.25:1 on white. */
+  color: #6c6c6c;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive breakpoints
+   -------------------------------------------------------------------------- */
+
+/* Smaller laptops */
+@media (max-width: 1200px) {
+  .footer-grid {
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .ft-column-group {
+    gap: 2.5rem;
+  }
+
+  .quick-links h6,
+  .footer ul li a,
+  .footer p {
+    font-size: 15px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .company-info div {
+    width: 100%;
+
+  }
+ .contact-text .section-headings h2 {
+  font-size: 32px;
+  
+}
+
+  .top-footer,
+  .middle-footer {
+    margin-bottom: 3.5rem;
+  }
+   .contact-section .section-subtitle {
+      font-size: 13px;
+    }
+    .footer {
+margin-top: 40px;
+    }
+}
+
+/* Mobile: company info full width, quick links + products side-by-side */
+@media (max-width: 600px) {
+  .footer-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+
+  a.btn.btn-submit,
+button.btn.btn-submit{
+  font-size: 13px;
+}
+
+
+  .footer-grid .company-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ft-column-group {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+    gap: 1.25rem 1rem;
+  }
+
+  .company-info div {
+    width: 100%;
+  }
+
+  .quick-links h6,
+  .footer li a {
+    font-size: 12px;
+  }
+
+  .footer-heading h2 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .top-footer,
+  .middle-footer {
+    margin-bottom: 2.5rem;
+  }
+
+  button.btn-verify-custom {
+    padding: 0 1.5rem;
+    height: 30px;
+  }
+
+  .features-slider-wrapper {
+    background: #f5f5f5;
+    padding: 1rem 1.5rem !important;
+  }
+
+  .tab-link {
+    padding: 7px 10px !important;
+    font-size: 14px !important;
+  }
+
+  .text-content {
+    flex: 1;
+    min-width: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .small,
+  small {
+    font-size: 1rem;
+  }
+
+  .partner-label {
+    margin-right: 10px !important;
+    min-width: 155px !important;
+    font-size: 1rem !important;
+    padding: 1.2rem 1rem !important;
+    text-align: left;
+  }
+
+  .contact-swiper img {
+    height: 30px;
+  }
+
+  .partner-section {
+    padding: 2rem 0 1rem !important;
+  }
+}
+
+@media (max-width: 425px){
+     .contact-text .section-headings h2 {
+  font-size: 24px;
+  
+}
+    .contact-section .section-subtitle {
+      font-size: 12px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .ft-column-group {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer: Figma layout for tablet and mobile only
+   Keep this AFTER the existing media queries.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .footer {
+    --footer-text-size:20px;
+    --footer-bottom-size: clamp(10px, 1.65vw, 16px);
+  }
+
+  .footer .footer-section {
+    margin: 0 !important;
+    padding: clamp(24px, 5vw, 52px) 5vw
+      clamp(40px, 12vw, 120px) !important;
+  }
+
+  /* Three columns, with Quick Links and Products in separate rows. */
+  .footer .footer-grid {
+    /* display: grid;
+    grid-template-columns:
+      minmax(0, 1.25fr)
+      minmax(0, 1fr)
+      minmax(0, 0.7fr);
+    grid-template-rows: auto auto;
+    column-gap: clamp(12px, 5vw, 52px);
+    row-gap: clamp(24px, 5vw, 52px);
+    align-items: start;
+    width: 100%; */
+     display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: clamp(12px, 5vw, 52px);
+    row-gap: clamp(24px, 5vw, 52px);
+    align-items: start;
+    width: 100%;
+  }
+
+  .footer .footer-grid > .company-info {
+    /* grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100%;
+    max-width: none;
+    min-width: 0; */
+        grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .footer .company-info div {
+    width: 100%;
+  }
+
+  /*
+   * Let Quick Links and Products participate directly
+   * in the footer grid without changing the JSX.
+   */
+  .footer .ft-column-group {
+    /* display: contents; */
+     display: contents;
+  }
+
+  .footer .ft-column-group > .footer-column:first-child {
+       grid-column: 1;
+    grid-row: 2;
+  }
+
+  .footer .ft-column-group > .footer-column:nth-child(2) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Policies: the direct footer-column child of footer-grid. */
+  .footer .footer-grid > .footer-column {
+      grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .footer .footer-column {
+    min-width: 0;
+  }
+
+  .footer .footer-grid h2,
+  .footer .footer-grid p,
+  .footer .footer-grid span,
+  .footer .footer-grid li a {
+    font-size: var(--footer-text-size);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  /* Match the screenshot's title case; keep company name uppercase. */
+  .footer .footer-column h2 {
+    text-transform: none !important;
+    margin-bottom: clamp(8px, 1.2vw, 12px) !important;
+  }
+
+  .footer .footer-column ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer .footer-column li a {
+    margin-bottom: clamp(8px, 1.2vw, 12px) !important;
+  }
+
+  .footer .footer-column li:last-child a {
+    margin-bottom: 0 !important;
+  }
+
+  /* Bottom row shares the footer background and horizontal alignment. */
+  .footer .footer-bottom {
+    padding: 16px 5vw !important;
+    /* background: transparent; */
+    border-top: 0 !important;
+  }
+
+  /* Override Bootstrap's flex-column and alignment utilities. */
+  .footer .footer-bottom > div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+    gap: 16px;
+    text-align: left !important;
+  }
+
+  .footer .footer-bottom > div > div:first-child {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: clamp(6px, 1vw, 12px);
+    margin-bottom: 0 !important;
+  }
+
+  .footer .footer-bottom > div > div:first-child > span,
+  .footer .footer-bottom > div > div:first-child > a {
+    margin-right: 0 !important;
+  }
+
+  .footer .footer-bottom > div > div:first-child > a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Label / email pairs, without Bootstrap's ms-4 spacing. */
+  .footer .footer-bottom > div > div:last-child {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: baseline;
+    gap: 6px 10px;
+    min-width: 0;
+  }
+
+  .footer .footer-bottom .footer-email {
+    margin-left: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  .footer .footer-email,
+  .footer .footer-socials-heading {
+    font-size: var(--footer-bottom-size);
+  }
+}
+
+/* Keep contact details readable when the bottom row cannot fit. */
+@media (max-width: 600px) {
+    .footer {
+    --footer-text-size: 15px;
+    --footer-bottom-size: clamp(10px, 1.65vw, 16px);
+  }
+  .footer .footer-bottom > div > div:last-child {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+    .footer .footer-email,
+  .footer .footer-socials-heading {
+    font-size: var(--footer-bottom-size);
+  }
+}
+
+
+/* Phone & Country Code Group */
+.phone-input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  position: relative;
+}
+
+/* 20% width container */
+.custom-country-dropdown {
+  flex: 0 0 calc(20% - 6px);
+  max-width: calc(20% - 6px);
+  position: relative;
+}
+
+/* Button matching your form control style */
+.country-dropdown-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  width: 100%;
+}
+
+.dropdown-arrow {
+  font-size: 9px;
+  color: #4b5563;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu: Strictly positioned downwards */
+.country-dropdown-menu {
+  position: absolute;
+  top: 100%;                  /* Forces it to appear strictly below */
+  left: 0;
+  width: max-content;         /* Expands so country labels don't truncate */
+  min-width: 100%;
+  background-color: #efefef;   /* Gray background */
+  color: #000000;             /* Black text */
+  margin: 4px 0 0 0;
+  padding: 12px 2px;
+  list-style: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  border-radius: 12px;
+
+}
+
+/* Dropdown items */
+.country-dropdown-item {
+  
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #000000;             /* Black text */
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.country-dropdown-item:hover {
+  background-color: #e5e7eb;   /* Slightly darker gray on hover */
+}
+
+.country-dropdown-item.selected {
+  background-color: #001654;  
+  color: white; /* Active selection gray */
+  font-weight: 600;
+}
+
+/* 80% width phone input */
+.phone-number-input {
+  flex: 0 0 calc(80% - 6px);
+  max-width: calc(80% - 6px);
+}

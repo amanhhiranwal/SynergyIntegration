@@ -1,0 +1,125 @@
+.iw-hero {
+  position: relative;
+  margin-top: 100px;
+  width: 100%;
+  /* Fluid height that follows the width — replaces the rigid fixed-height box.
+     Set 16 / 9 to your image's exact ratio (e.g. 4 / 3, 21 / 9) for zero letterbox. */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  min-height: 290px; /* keeps handle/labels comfortable on small screens */
+  max-height: 90vh;  /* safety cap on very wide screens */
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+
+  user-select: none;
+  /* background: #0e1628; */
+}
+
+.iw-compare {
+  position: absolute;
+  inset: 0;
+  cursor: col-resize;
+  touch-action: pan-y; /* horizontal drag moves the slider, vertical still scrolls */
+}
+
+.iw-img-right {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* was "cover" — whole image always visible, never cropped */
+  object-position: center center;
+  display: block;
+}
+
+.iw-img-left {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
+
+.iw-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 15;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.iw-handle {
+  position: absolute;
+  font-size: small;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  z-index: 16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  cursor: col-resize;
+  transition:
+    box-shadow 0.15s,
+    transform 0.5s;
+}
+
+.iw-handle.dragging {
+}
+.iw-hero:hover .iw-handle {
+  transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.45);
+}
+
+.iw-handle svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.iw-label {
+  position: absolute;
+  bottom: 28px;
+  z-index: 18;
+  color: #fff;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 5px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+.iw-label-left {
+  left: 28px;
+}
+.iw-label-right {
+  right: 28px;
+}
+
+@keyframes pulse-hint {
+}
+
+@media (max-width: 1023px) {
+  .iw-hero {
+    margin-top: 40px; /* fixed height: 350px removed — fluid sizing handles it */
+  }
+    
+
+}
+
+/* @media (max-width: 480px) { height: 200px } removed:
+   the aspect-ratio box already scales down on small screens without clipping. */
