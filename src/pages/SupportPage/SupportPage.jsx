@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SupportPage.css";
-import Banner from "../../Assets/Support/banner.png";
+import Banner from "../../Assets/Support/banner-upd.png";
 import icon1 from "../../Assets/Support/sms-icon.webp";
 import icon3 from "../../Assets/Support/icon-1.webp";
 import product4 from "../../Assets/Support/product-2.webp";
