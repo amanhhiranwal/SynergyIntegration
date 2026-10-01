@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
-import logo from "../../Assets/logo.webp";
+import logo from "../../Assets/logo.png";
 // Ensure these imports match your file structure
 import img1 from "../../Assets/DisplayNav/image1.webp";
 import img2 from "../../Assets/DisplayNav/image2'.webp";
