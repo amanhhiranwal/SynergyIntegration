@@ -18,7 +18,14 @@ const countryOptions = [
   { code: "+91", label: "+91 (IN)" },
   { code: "+44", label: "+44 (UK)" },
   { code: "+61", label: "+61 (AU)" },
-  { code: "+971", label: "+971 (AE)" },
+
+  // GCC Countries
+  { code: "+973", label: "+973 (BH)" }, // Bahrain
+  { code: "+965", label: "+965 (KW)" }, // Kuwait
+  { code: "+968", label: "+968 (OM)" }, // Oman
+  { code: "+974", label: "+974 (QA)" }, // Qatar
+  { code: "+966", label: "+966 (SA)" }, // Saudi Arabia
+  { code: "+971", label: "+971 (AE)" }, // United Arab Emirates
 ];
 
   const [toast, setToast] = useState({
@@ -139,7 +146,7 @@ const countryOptions = [
     const link = document.createElement("a");
 
     link.href = QonevoBrochure;
-    link.download = "Qonevo-Brochure.pdf";
+    link.download = "Synergy-Brochure.pdf";
 
     document.body.appendChild(link);
     link.click();
