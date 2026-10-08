@@ -31,7 +31,7 @@ const Footer = () => {
 
             <div>
               <span className="fw-bold d-block">Contact Numbers:</span>
-              <p className="mb-3">+971 56 929 5235, +971 54 719 5983</p>
+              <p className="mb-3">+971 56 929 5235</p>
             </div>
           </div>
 

@@ -1,8 +1,8 @@
 import "./HomePage1.css";
 import ProductSlider from "../../component/ImageCarsoul/ProductSlider";
 import ifp from "../../Assets/ifp1.png";
-import adsdisplay from "../../Assets/ad-display1.png";
-import kiosk from "../../Assets/kiosk1.png";
+import adsdisplay from "../../Assets/M2.png";
+import kiosk from "../../Assets/M1.png";
 import activeled from "../../Assets/active-led1.png";
 import pcops from "../../Assets/pc-ops1.png";
 import adson from "../../Assets/add-ons1.png";
