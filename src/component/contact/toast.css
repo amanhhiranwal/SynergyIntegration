@@ -66,7 +66,37 @@
   position: relative;
 }
 
+.phone-input-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
 
+.custom-country-dropdown {
+  position: relative;
+  flex: 0 0 30%;
+  min-width: 0;
+}
+.phone-number-wrapper {
+  flex: 1 1;
+  min-width: 0;
+}
+
+.country-dropdown-btn {
+  width: 100%;
+}
+
+.phone-number-input {
+  /* flex: 1;
+  min-width: 0;
+  width: 100%; */
+
+    display: block;
+  width: 100% !important;
+  box-sizing: border-box;
+
+}
 /* =========================================================
    HOME PAGE CONTACT
    BOX / CARD
@@ -385,6 +415,43 @@ padding-right: 0;
   .contact-fields{
     margin-top: 10px!important;
   }
+  .phone-input-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.custom-country-dropdown {
+  flex: 0 0 35%;
+  min-width: 0;
+}
+
+.phone-number-wrapper {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.phone-number-input {
+  width: 100% !important;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.country-dropdown-btn {
+  width: 100%;
+  font-size: 14px;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+.phone-number-wrapper .text-danger,
+.custom-country-dropdown .text-danger {
+  display: block;
+  white-space: normal;
+  font-size: 12px;
+}
 }
 .business-email {
   /* Sits on the #efefef contact-section background, where Bootstrap's #0d6efd
