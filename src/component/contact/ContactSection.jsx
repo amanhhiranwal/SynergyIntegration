@@ -94,8 +94,8 @@ const countryOptions = [
       }
     }
 
-    if (!/^\d{10}$/.test(phone)) {
-      newErrors.phone = "Phone number must be exactly 10 digits";
+    if (!/^\d{15}$/.test(phone)) {
+      newErrors.phone = "Phone number must be valid";
     }
 
 if (!countryCode) {
