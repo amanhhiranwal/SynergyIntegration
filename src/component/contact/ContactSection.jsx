@@ -11,7 +11,7 @@ const ContactSection = ({ variant = "home" }) => {
   const [company, setCompany] = useState("");
   const [website, setWebsite] = useState("");
   const [message, setMessage] = useState("");
-  const [countryCode, setCountryCode] = useState("+91");
+  const [countryCode, setCountryCode] = useState("");
 const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 const countryOptions = [
   { code: "+1", label: "+1 (US)" },
@@ -98,6 +98,9 @@ const countryOptions = [
       newErrors.phone = "Phone number must be exactly 10 digits";
     }
 
+if (!countryCode) {
+  newErrors.countryCode = "Please select a country code";
+}
     if (!message.trim()) {
       newErrors.message = "Message is required";
     }
@@ -118,6 +121,7 @@ const countryOptions = [
       fullName: name,
       email,
       phoneNumber: phone,
+      countryCode: countryCode,
       companyName: company,
       websiteUrl: website,
       helpMessage: message,
@@ -227,54 +231,67 @@ const countryOptions = [
           </div>
 
                  {/* PHONE */}
-          <div className="col-12 mt-4 contact-fields">
-            <div className="phone-input-group">
-              
-              {/* Custom Country Code Dropdown */}
-              <div className="custom-country-dropdown">
-                <button
-                  type="button"
-                  className="form-control-custom country-dropdown-btn"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  <span>{countryCode}</span>
-                  <span className={`dropdown-arrow ${isDropdownOpen ? "open" : ""}`}>▼</span>
-                </button>
+ {/* PHONE */}
+<div className="col-12 mt-4 contact-fields">
+  <div className="phone-input-group">
+    {/* Custom Country Code Dropdown */}
+    <div className="custom-country-dropdown">
+      <button
+        type="button"
+        className="form-control-custom country-dropdown-btn"
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
+        <span>{countryCode || "Select Code"}</span>
+        <span className={`dropdown-arrow ${isDropdownOpen ? "open" : ""}`}>
+          ▼
+        </span>
+      </button>
 
-                {/* Dropdown Menu - Forces downward position */}
-                {isDropdownOpen && (
-                  <ul className="country-dropdown-menu">
-                    {countryOptions.map((item) => (
-                      <li
-                        key={item.code}
-                        className={`country-dropdown-item ${countryCode === item.code ? "selected" : ""}`}
-                        onClick={() => {
-                          setCountryCode(item.code);
-                          setIsDropdownOpen(false);
-                        }}
-                      >
-                        {item.label}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+      {isDropdownOpen && (
+        <ul className="country-dropdown-menu">
+          {countryOptions.map((item) => (
+            <li
+              key={item.code}
+              className={`country-dropdown-item ${
+                countryCode === item.code ? "selected" : ""
+              }`}
+              onClick={() => {
+                setCountryCode(item.code);
+                setIsDropdownOpen(false);
+              }}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      )}
 
-              {/* Phone Input */}
-              <input
-                type="tel"
-                className="form-control-custom phone-number-input"
-                placeholder="Phone Number"
-                value={phone}
-                maxLength="10"
-                onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
-              />
-            </div>
+      {errors.countryCode && (
+        <small className="text-danger d-block">
+          {errors.countryCode}
+        </small>
+      )}
+    </div>
 
-            {errors.phone && (
-              <small className="text-danger">{errors.phone}</small>
-            )}
-          </div>
+    {/* Phone Input */}
+    <div className="phone-number-wrapper">
+      <input
+        type="tel"
+        className="form-control-custom phone-number-input"
+        placeholder="Phone Number"
+        value={phone}
+        maxLength="10"
+        onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+      />
+
+      {errors.phone && (
+        <small className="text-danger d-block">
+          {errors.phone}
+        </small>
+      )}
+    </div>
+  </div>
+</div>
 
           {/* COMPANY */}
           <div className="col-md-6 col-12 mt-4">
