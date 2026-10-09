@@ -93,10 +93,9 @@ const countryOptions = [
         newErrors.email = emailError;
       }
     }
-
-    if (!/^\d{15}$/.test(phone)) {
-      newErrors.phone = "Phone number must be valid";
-    }
+if (!/^\d{7,15}$/.test(phone)) {
+  newErrors.phone = "Please enter a valid phone number";
+}
 
 if (!countryCode) {
   newErrors.countryCode = "Please select a country code";
