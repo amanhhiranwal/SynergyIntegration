@@ -280,7 +280,7 @@ if (!countryCode) {
         className="form-control-custom phone-number-input"
         placeholder="Phone Number"
         value={phone}
-        maxLength="10"
+        maxLength="15"
         onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
       />
 
