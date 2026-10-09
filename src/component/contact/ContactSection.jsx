@@ -13,20 +13,36 @@ const ContactSection = ({ variant = "home" }) => {
   const [message, setMessage] = useState("");
   const [countryCode, setCountryCode] = useState("");
 const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-const countryOptions = [
-  { code: "+1", label: "+1 (US)" },
-  { code: "+91", label: "+91 (IN)" },
-  { code: "+44", label: "+44 (UK)" },
-  { code: "+61", label: "+61 (AU)" },
+// const countryOptions = [
+//   { code: "+1", label: "+1 (US)" },
+//   { code: "+91", label: "+91 (IN)" },
+//   { code: "+44", label: "+44 (UK)" },
+//   { code: "+61", label: "+61 (AU)" },
 
-  // GCC Countries
-  { code: "+973", label: "+973 (BH)" }, // Bahrain
-  { code: "+965", label: "+965 (KW)" }, // Kuwait
-  { code: "+968", label: "+968 (OM)" }, // Oman
-  { code: "+974", label: "+974 (QA)" }, // Qatar
-  { code: "+966", label: "+966 (SA)" }, // Saudi Arabia
-  { code: "+971", label: "+971 (AE)" }, // United Arab Emirates
+//   // GCC Countries
+//   { code: "+973", label: "+973 (BH)" }, // Bahrain
+//   { code: "+965", label: "+965 (KW)" }, // Kuwait
+//   { code: "+968", label: "+968 (OM)" }, // Oman
+//   { code: "+974", label: "+974 (QA)" }, // Qatar
+//   { code: "+966", label: "+966 (SA)" }, // Saudi Arabia
+//   { code: "+971", label: "+971 (AE)" }, // United Arab Emirates
+// ];
+
+const countryOptions = [
+{ code: "+1", label: "+1 (US)", minDigits: 10, maxDigits: 10 },
+{ code: "+91", label: "+91 (IN)", minDigits: 10, maxDigits: 10 },
+{ code: "+44", label: "+44 (UK)", minDigits: 10, maxDigits: 10 },
+{ code: "+61", label: "+61 (AU)", minDigits: 9, maxDigits: 9 },
+
+// GCC Countries
+{ code: "+973", label: "+973 (BH)", minDigits: 8, maxDigits: 8 },
+{ code: "+965", label: "+965 (KW)", minDigits: 8, maxDigits: 8 },
+{ code: "+968", label: "+968 (OM)", minDigits: 8, maxDigits: 8 },
+{ code: "+974", label: "+974 (QA)", minDigits: 8, maxDigits: 8 },
+{ code: "+966", label: "+966 (SA)", minDigits: 9, maxDigits: 9 },
+{ code: "+971", label: "+971 (AE)", minDigits: 9, maxDigits: 9 },
 ];
+
 
   const [toast, setToast] = useState({
     show: false,
@@ -93,8 +109,20 @@ const countryOptions = [
         newErrors.email = emailError;
       }
     }
-if (!/^\d{7,15}$/.test(phone)) {
-  newErrors.phone = "Please enter a valid phone number";
+// if (!/^\d{7,15}$/.test(phone)) {
+//   newErrors.phone = "Please enter a valid phone number";
+// }
+const selectedCountry = countryOptions.find(
+(item) => item.code === countryCode
+);
+
+if (!selectedCountry) {
+newErrors.countryCode = "Please select a country code";
+} else if (
+phone.length < selectedCountry.minDigits ||
+phone.length > selectedCountry.maxDigits
+) {
+newErrors.phone = `Phone number must contain exactly ${selectedCountry.maxDigits} digits`;
 }
 
 if (!countryCode) {
@@ -279,8 +307,9 @@ if (!countryCode) {
         className="form-control-custom phone-number-input"
         placeholder="Phone Number"
         value={phone}
-        maxLength="15"
-        onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+maxLength={
+  countryOptions.find((item) => item.code === countryCode)?.maxDigits || 15
+}        onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
       />
 
       {errors.phone && (
