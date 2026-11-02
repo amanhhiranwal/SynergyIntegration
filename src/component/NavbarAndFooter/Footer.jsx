@@ -15,11 +15,11 @@ const Footer = () => {
             {/* <p className="mb-3">
               (Formerly Known as Qonevo Technologies Pvt Ltd.)
             </p> */}
-            <p className="mb-2">
-              {/* <span className="fw-bold">CIN:</span> 72200UP2021PTC156318 */}
+            {/* <p className="mb-2">
+             
                             <span className="fw-bold">Trade Licence No. :</span> 1637563 
 
-            </p>
+            </p> */}
 
             <div className="mb-3">
               <span className="fw-bold d-block">Address:</span>
@@ -31,7 +31,7 @@ const Footer = () => {
 
             <div>
               <span className="fw-bold d-block">Contact Numbers:</span>
-              <p className="mb-3">+971 56 929 5235, +971 54 719 5983</p>
+              <p className="mb-3">+971 56 929 5235</p>
             </div>
           </div>
 

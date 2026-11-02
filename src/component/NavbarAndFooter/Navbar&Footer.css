@@ -632,5 +632,7 @@ button.btn.btn-submit{
 /* 80% width phone input */
 .phone-number-input {
   flex: 0 0 calc(80% - 6px);
-  max-width: calc(80% - 6px);
+  max-width:  100%;
 }
+
+

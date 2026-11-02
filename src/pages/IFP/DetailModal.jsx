@@ -28,7 +28,7 @@ const DetailModal = ({ isOpen, product, onClose }) => {
   function handleDownload() {
     const link = document.createElement("a");
     link.href = QonevoBrochure;
-    link.download = "Qonevo-Brochure.pdf"; // name of downloaded file
+    link.download = "Synergy-Brochure.pdf"; // name of downloaded file
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
